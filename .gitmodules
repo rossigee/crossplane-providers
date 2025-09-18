@@ -1,0 +1,3 @@
+[submodule "provider-namecheap"]
+	path = provider-namecheap
+	url = https://github.com/rossigee/provider-namecheap.git
