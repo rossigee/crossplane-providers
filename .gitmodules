@@ -1,3 +1,55 @@
+[submodule "provider-backblaze"]
+	path = provider-backblaze
+	url = git@github.com:rossigee/provider-backblaze.git
+
+[submodule "provider-cloudflare"]
+	path = provider-cloudflare
+	url = git@github.com:rossigee/provider-cloudflare.git
+
+[submodule "provider-discord"]
+	path = provider-discord
+	url = git@github.com:rossigee/provider-discord.git
+
+[submodule "provider-gitea"]
+	path = provider-gitea
+	url = git@github.com:rossigee/provider-gitea.git
+
+[submodule "provider-harbor"]
+	path = provider-harbor
+	url = git@github.com:rossigee/provider-harbor.git
+
+[submodule "provider-http"]
+	path = provider-http
+	url = git@github.com:rossigee/provider-http.git
+
+[submodule "provider-libvirt"]
+	path = provider-libvirt
+	url = git@github.com:rossigee/provider-libvirt.git
+
+[submodule "provider-mailgun"]
+	path = provider-mailgun
+	url = git@github.com:rossigee/provider-mailgun.git
+
+[submodule "provider-matrix"]
+	path = provider-matrix
+	url = git@github.com:rossigee/provider-matrix.git
+
+[submodule "provider-minio"]
+	path = provider-minio
+	url = git@github.com:rossigee/provider-minio.git
+
 [submodule "provider-namecheap"]
 	path = provider-namecheap
-	url = https://github.com/rossigee/provider-namecheap.git
+	url = git@github.com:rossigee/provider-namecheap.git
+
+[submodule "provider-openstack"]
+	path = provider-openstack
+	url = git@github.com:crossplane-contrib/provider-openstack.git
+
+[submodule "provider-plausible"]
+	path = provider-plausible
+	url = git@github.com:rossigee/provider-plausible.git
+
+[submodule "provider-signoz"]
+	path = provider-signoz
+	url = git@github.com:rossigee/provider-signoz.git
