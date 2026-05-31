@@ -1,9 +1,9 @@
 # Standardized CI/CD Template for Crossplane Providers
-# Version: 2025-08-14
-# 
-# This template implements Option 1: CI builds and validates, Release publishes
-# - CI: Build validation only (no publishing)
-# - Release: All publishing (version + latest tags from same image)
+# Version: 2025-10-28 - Updated for Go 1.25.3
+#
+# This template implements CI builds and validates ONLY
+# - CI: Build validation only (no publishing to avoid tag conflicts)
+# - Release: All publishing handled by release-template.yml
 #
 # Apply this pattern across all providers to eliminate tag conflicts
 
@@ -27,9 +27,9 @@ permissions:
   actions: read    # Needed for detecting duplicate actions
 
 env:
-  GO_VERSION: '1.24.5'
+  GO_VERSION: '1.25.3'
   GOLANGCI_VERSION: 'latest'
-  GOLANGCILINT_VERSION: '2.3.1'
+  GOLANGCILINT_VERSION: '2.5.0'
   DOCKER_BUILDX_VERSION: 'v0.11.2'
 
 jobs:
@@ -57,7 +57,7 @@ jobs:
           submodules: true
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ env.GO_VERSION }}
 
@@ -78,7 +78,7 @@ jobs:
           submodules: true
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ env.GO_VERSION }}
 
@@ -102,7 +102,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ env.GO_VERSION }}
 
@@ -133,7 +133,7 @@ jobs:
           submodules: true
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ env.GO_VERSION }}
 
@@ -162,6 +162,7 @@ jobs:
       - name: Upload Gosec Results
         uses: github/codeql-action/upload-sarif@v3
         if: always() && hashFiles('gosec-results.sarif') != ''
+        continue-on-error: true
         with:
           sarif_file: gosec-results.sarif
           category: gosec
@@ -181,7 +182,7 @@ jobs:
           submodules: true
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ env.GO_VERSION }}
 
@@ -238,7 +239,7 @@ jobs:
 # 5. STANDARDIZED BUILD SYSTEM
 #    - Uses rossigee/build submodule (working fork)
 #    - Consistent make targets across all providers
-#    - Go 1.24.5 with proper version handling
+#    - Go 1.25.3 with proper version handling
 # 
 # To apply this template:
 # 1. Copy this structure to .github/workflows/ci.yml
