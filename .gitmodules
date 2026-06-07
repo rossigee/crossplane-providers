@@ -2,6 +2,10 @@
 	path = provider-backblaze
 	url = git@github.com:rossigee/provider-backblaze.git
 
+[submodule "provider-btcpay"]
+	path = provider-btcpay
+	url = git@github.com:rossigee/provider-btcpay.git
+
 [submodule "provider-cloudflare"]
 	path = provider-cloudflare
 	url = git@github.com:rossigee/provider-cloudflare.git
@@ -9,6 +13,10 @@
 [submodule "provider-discord"]
 	path = provider-discord
 	url = git@github.com:rossigee/provider-discord.git
+
+[submodule "provider-docker"]
+	path = provider-docker
+	url = git@github.com:rossigee/provider-docker.git
 
 [submodule "provider-gitea"]
 	path = provider-gitea
@@ -53,3 +61,23 @@
 [submodule "provider-signoz"]
 	path = provider-signoz
 	url = git@github.com:rossigee/provider-signoz.git
+
+[submodule "provider-hostinger"]
+	path = provider-hostinger
+	url = git@github.com:rossigee/provider-hostinger.git
+
+[submodule "provider-keycloak"]
+	path = provider-keycloak
+	url = git@github.com:rossigee/provider-keycloak.git
+
+[submodule "provider-rabbitmq"]
+	path = provider-rabbitmq
+	url = git@github.com:rossigee/provider-rabbitmq.git
+
+[submodule "provider-vault"]
+	path = provider-vault
+	url = git@github.com:rossigee/provider-vault.git
+
+[submodule "build"]
+	path = build
+	url = git@github.com:rossigee/build.git
