@@ -74,9 +74,6 @@
 	path = provider-rabbitmq
 	url = git@github.com:rossigee/provider-rabbitmq.git
 
-[submodule "provider-vault"]
-	path = provider-vault
-	url = git@github.com:rossigee/provider-vault.git
 
 [submodule "build"]
 	path = build
