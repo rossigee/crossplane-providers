@@ -455,7 +455,7 @@ All providers now use the **rossigee/build** fork instead of the broken upstream
 
 ### **Standardized Templates Created**
 
-**Location**: `.github-templates/`
+**Location**: `docs/templates/`
 - **`ci-template.yml`**: Standardized CI workflow (validation only)
 - **`release-template.yml`**: Standardized release workflow (publishing only)
 - **`README.md`**: Complete implementation guide

@@ -68,13 +68,13 @@ This directory contains standardized CI/CD templates designed to:
   - Verifies images are pullable from registry
   - Confirms version and latest tags point to identical image digest
   - Fails fast if publication incomplete or tags differ
-- ✅ **Confirmed PAT_TOKEN** as canonical authentication variable
+- ✅ **Uses github.token** for authentication (OIDC, no PAT required)
 - ✅ **Confirmed modern tooling**: softprops/action-gh-release@v2 (not deprecated v1)
 - ✅ **Added fail-fast behavior** with `set -e` in all workflow steps
 
 **Fixes regressions from**:
 - provider-harbor's 2025-10-01 template which reverted to:
-  - ❌ GITHUB_TOKEN instead of PAT_TOKEN
+  - ❌ GITHUB_TOKEN instead of github.token (OIDC)
   - ❌ Deprecated actions/create-release@v1
 
 ### 2025-09-26
@@ -132,7 +132,7 @@ make xpkg.build              # Build Crossplane package
 - Automated verification step (pulls images and confirms identical digests)
 - Manual dispatch option for emergency releases
 - GitHub release creation with auto-generated notes
-- PAT_TOKEN authentication (canonical variable name)
+- github.token authentication (OIDC, no PAT required)
 - Modern tooling (softprops/action-gh-release@v2, not deprecated v1)
 
 ### 3. `security-template.yml` - On-Demand Only
@@ -164,9 +164,9 @@ mkdir -p ../backup
 cp *.yml ../backup/ 2>/dev/null || true
 
 # Apply new templates
-cp ../../../.github-templates/ci-template.yml ci.yml
-cp ../../../.github-templates/release-template.yml release.yml
-cp ../../../.github-templates/security-template.yml security.yml
+cp ../../../docs/templates/ci-template.yml ci.yml
+cp ../../../docs/templates/release-template.yml release.yml
+cp ../../../docs/templates/security-template.yml security.yml
 
 # Remove problematic scheduled workflows
 rm -f backport.yml commands.yml renovate.yml cruft-update.yml docs.yml
@@ -175,7 +175,7 @@ rm -f backport.yml commands.yml renovate.yml cruft-update.yml docs.yml
 git add -A
 git commit -m "Standardize CI/CD workflows
 
-- Apply standardized templates from .github-templates/
+- Apply standardized templates from docs/templates/
 - Remove scheduled security scans to eliminate email spam
 - Separate CI (validation) from Release (publishing)
 - Update to Go 1.25.1 and modern tooling"
@@ -240,9 +240,9 @@ for provider in "${PROVIDERS[@]}"; do
   mkdir -p "$provider/.github/workflows"
 
   # Apply templates
-  cp .github-templates/ci-template.yml "$provider/.github/workflows/ci.yml"
-  cp .github-templates/release-template.yml "$provider/.github/workflows/release.yml"
-  cp .github-templates/security-template.yml "$provider/.github/workflows/security.yml"
+  cp docs/templates/ci-template.yml "$provider/.github/workflows/ci.yml"
+  cp docs/templates/release-template.yml "$provider/.github/workflows/release.yml"
+  cp docs/templates/security-template.yml "$provider/.github/workflows/security.yml"
 
   # Remove problematic workflows
   cd "$provider/.github/workflows"

@@ -62,7 +62,7 @@ The release workflow adds build-specific labels:
 
 ### 1. OCI Labels Generator Script
 
-**Location**: `.github-templates/generate-oci-labels.sh`
+**Location**: `docs/templates/generate-oci-labels.sh`
 
 Generates standardized OCI labels for use in build processes:
 
