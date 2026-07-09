@@ -150,6 +150,60 @@ make xpkg.build              # Build Crossplane package
 - Optional failure notifications
 - Manual trigger via GitHub Actions UI
 
+### 4. `dependabot.yml` - Dependency Updates
+**Purpose**: Automated dependency monitoring and PR creation
+
+```yaml
+# Monitors: Go modules, GitHub Actions, Dockerfiles
+# Schedule: Weekly (Friday 10:00 UTC)
+# Auto-merge: Handled by auto-merge.yml workflow
+```
+
+**Key Features**:
+- Three ecosystems: `gomod`, `github-actions`, `docker`
+- Grouped updates to reduce PR noise (minor/patch)
+- Standardized schedule: Friday 10:00 UTC across all providers
+- Works with `auto-merge.yml` for severity-based auto-merge
+
+**Auto-Merge Policy** (governed by `auto-merge.yml`):
+
+| Label | Action |
+|-------|--------|
+| `dependencies/go/minor` | Auto-merge |
+| `dependencies/go/patch` | Auto-merge |
+| `dependencies/github-actions/minor` | Auto-merge |
+| `dependencies/github-actions/patch` | Auto-merge |
+| `dependencies/docker/minor` | Auto-merge |
+| `dependencies/docker/patch` | Auto-merge |
+| `dependencies/security` | Block (human review) |
+| `dependencies/go/major` | Block (human review) |
+| *(unlabeled)* | Block (human review) |
+
+CI's `govulncheck` + `gosec` must pass before auto-merge proceeds.
+
+### 5. `auto-merge.yml` - Severity-Based Auto-Merge
+**Purpose**: Automatically merge low-risk Dependabot PRs after CI passes
+
+```yaml
+# Triggers: pull_request_target (opened, synchronize, labeled)
+# Actor: Only runs for dependabot[bot]
+# Requires: All CI checks pass (lint, check-diff, unit-tests, security-scan)
+```
+
+**Key Features**:
+- Only triggers for Dependabot PRs (`github.actor == 'dependabot[bot]'`)
+- Waits for CI checks to complete (with retry)
+- Squash-merges eligible PRs, deletes branch
+- Blocks security, major, and unclassified updates
+- No additional labels required — works with Dependabot's native labels
+
+**Merge Conditions**:
+1. PR is from Dependabot
+2. Update is minor or patch (Go, GitHub Actions, or Docker)
+3. Update is NOT a security fix
+4. All required CI checks pass
+5. PR is mergeable (no conflicts)
+
 ## Implementation Guide
 
 ### Step 1: Apply Templates to Provider
@@ -243,6 +297,8 @@ for provider in "${PROVIDERS[@]}"; do
   cp docs/templates/ci-template.yml "$provider/.github/workflows/ci.yml"
   cp docs/templates/release-template.yml "$provider/.github/workflows/release.yml"
   cp docs/templates/security-template.yml "$provider/.github/workflows/security.yml"
+  cp docs/templates/auto-merge.yml "$provider/.github/workflows/auto-merge.yml"
+  cp docs/templates/dependabot.yml "$provider/.github/dependabot.yml"
 
   # Remove problematic workflows
   cd "$provider/.github/workflows"
@@ -269,8 +325,10 @@ For each provider:
 
 - [ ] **Backup existing workflows** (optional)
 - [ ] **Apply three templates** (ci.yml, release.yml, security.yml)
+- [ ] **Apply QA assistance templates** (dependabot.yml, auto-merge.yml)
 - [ ] **Remove scheduled workflows** (any with `cron:` triggers)
 - [ ] **Remove unnecessary workflows** (backport, commands, renovate, cruft, docs)
+- [ ] **Configure branch protection** (require CI checks, allow Dependabot auto-merge)
 - [ ] **Test CI workflow** (push to master - should validate only)
 - [ ] **Test release workflow** (create version tag - should publish)
 - [ ] **Verify registry tags** (version and latest should be identical)
@@ -284,9 +342,14 @@ For each provider:
 - 📁 **File reduction**: 57+ workflows → 48 standardized (15% reduction)
 - ⚡ **Modern tooling**: Go 1.25.1, ubuntu-24.04, latest actions
 - 🏷️ **Clean registry**: No more tag conflicts between workflows
+- 🤖 **Automated dependency updates**: Dependabot creates PRs weekly on Fridays
+- 🔀 **Auto-merge for safe updates**: Minor/patch Go, Actions, Docker updates merge automatically after CI passes
+- ⛔ **Security gates intact**: Security and major updates always require human review
 
 **Success Metrics**:
 - Zero daily security scan emails
 - All providers use identical workflow patterns
 - Version and latest tags always point to same image digest
+- Minor/patch Dependabot PRs auto-merge after passing CI
+- Security/major Dependabot PRs blocked and require human review
 - Security scans available on-demand via GitHub Actions UI

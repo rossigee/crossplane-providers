@@ -40,4 +40,4 @@ kubeconfig
 .DS_Store
 
 # Debug
-__debug*
+__debug*.cache/
