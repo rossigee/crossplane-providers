@@ -17,55 +17,90 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 
 | Provider | Latest Version | Origin | Go Version | Runtime | v1 API | v2 API | Build | Upjet/TF | Status | Notes |
 |----------|---------------|--------|------------|--------|--------|-------|----------|--------|-------|
-| [provider-backblaze](provider-backblaze) | v0.12.9 | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | In Dev | Backblaze B2 storage (buckets, keys, policies) |
-| [provider-btcpay](provider-btcpay) | v0.4.0 | rossigee | 1.26.3 | v2.3.2 | Yes | Yes | Yes | No | In Dev | BTCPay Server (stores, invoices, webhooks) |
-| [provider-cloudflare](provider-cloudflare) | v0.13.0 | rossigee | 1.26 | v2.3.2 | No | Yes | Yes | No | Production | Cloudflare DNS, security, WAF, firewall |
-| [provider-discord](provider-discord) | v0.9.0 | rossigee | 1.26.3 | v2.3.2 | Yes | No | Yes | No | In Dev | Discord server management |
-| [provider-docker](provider-docker) | v0.1.0 | rossigee | 1.26.3 | v2.3.2 | Yes | Yes | Yes | No | In Dev | Docker containers and compose stacks |
-| [provider-gitea](provider-gitea) | v0.8.2 | rossigee | 1.26.3 | v2.3.2 | Yes | Yes | Yes | No | In Dev | Gitea repository management |
-| [provider-harbor](provider-harbor) | v0.13.0 | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | Production | Harbor container registry |
-| [provider-hostinger](provider-hostinger) | v0.1.0 | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | In Dev | Hostinger VPS and cloud services |
-| [provider-http](provider-http) | v1.1.0 | rossigee | 1.26.3 | v2.3.2 | Yes | Yes | Yes | No | Standard | Generic HTTP request resources |
-| [provider-keycloak](provider-keycloak) | (no tags) | rossigee | 1.26 | v2.3.2 | No | Yes | Yes | No | In Dev | Keycloak identity management |
-| [provider-libvirt](provider-libvirt) | (no tags) | rossigee | 1.26.0 | v2.3.2 | Yes | Yes | Yes | Upjet | In Dev | KVM/libvirt virtual machines |
-| [provider-mailgun](provider-mailgun) | v0.14.3 | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | Production | Mailgun email service |
-| [provider-matrix](provider-matrix) | v0.1.0 | crossplane-contrib | 1.26.3 | v2.3.2 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
-| [provider-minio](provider-minio) | v0.19.1 | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
-| [provider-namecheap](provider-namecheap) | (no tags) | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
-| [provider-openstack](provider-openstack) | v0.9.0 | crossplane-contrib | 1.25.3 | v2.3.2 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
-| [provider-plausible](provider-plausible) | v0.2.1 | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | Production | Plausible Analytics |
-| [provider-rabbitmq](provider-rabbitmq) | v0.1.0 | rossigee | 1.26.3 | v2.3.2 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
-| [provider-signoz](provider-signoz) | v0.2.0 | rossigee | 1.26.3 | v2.3.2 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
-| [provider-vault](provider-vault) | (no tags) | rossigee | 1.26.3 | (standalone) | Yes | Yes | No | No | In Dev | HashiCorp Vault secrets management |
+| [provider-backblaze](provider-backblaze) | v0.12.9 | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | In Dev | Backblaze B2 storage (buckets, keys, policies) |
+| [provider-btcpay](provider-btcpay) | v0.4.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | BTCPay Server (stores, invoices, webhooks) |
+| [provider-cloudflare](provider-cloudflare) | v0.13.0 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | Cloudflare DNS, security, WAF, firewall |
+| [provider-discord](provider-discord) | v0.9.0 | rossigee | 1.26.5 | v2.3.3 | Yes | No | Yes | No | In Dev | Discord server management |
+| [provider-docker](provider-docker) | v0.1.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | Docker containers and compose stacks |
+| [provider-gitea](provider-gitea) | v0.8.2 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | Gitea repository management |
+| [provider-harbor](provider-harbor) | v0.13.0 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | Harbor container registry |
+| [provider-hostinger](provider-hostinger) | v0.1.0 | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | In Dev | Hostinger VPS and cloud services |
+| [provider-http](provider-http) | v1.1.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | Standard | Generic HTTP request resources |
+| [provider-keycloak](provider-keycloak) | (no tags) | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | In Dev | Keycloak identity management |
+| [provider-libvirt](provider-libvirt) | (no tags) | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | Upjet | In Dev | KVM/libvirt virtual machines |
+| [provider-mailgun](provider-mailgun) | v0.14.3 | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | Production | Mailgun email service |
+| [provider-matrix](provider-matrix) | v0.1.0 | crossplane-contrib | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
+| [provider-minio](provider-minio) | v0.19.1 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
+| [provider-namecheap](provider-namecheap) | (no tags) | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
+| [provider-openstack](provider-openstack) | v0.9.0 | crossplane-contrib | 1.26.5 | v1.20.10 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
+| [provider-plausible](provider-plausible) | v0.2.1 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | Plausible Analytics |
+| [provider-rabbitmq](provider-rabbitmq) | v0.1.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
+| [provider-signoz](provider-signoz) | v0.2.0 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
+| [provider-vault](provider-vault) | (no tags) | rossigee | 1.26.5 | v2.4.0-rc.0 | Yes | Yes | No | No | In Dev | HashiCorp Vault secrets management |
 
 ## Summary Statistics
 
 - **Total Providers**: 20
-- **rossigee-maintained**: 18 (90%)
-- **crossplane-contrib**: 2 (10%)
-- **With v2 (namespaced) APIs**: 18
+- **With v2 (namespaced) APIs**: 19 (95%)
 - **Production Ready**: 5 (cloudflare, harbor, mailgun, minio, plausible)
 - **In Development**: 12
 - **Standard/Third-party**: 3
 
 ## Standardization Status
 
-| Metric | Status | Notes |
-|--------|--------|-------|
-| Build System | ✅ 100% | All use rossigee/build (except vault) |
-| Registry | ✅ 100% | All use ghcr.io/rossigee |
-| Go Version | ✅ 95% | 19/20 on 1.26.3; openstack (1.25.3) needs update |
-| Runtime | ✅ 95% | 19/20 on v2.3.2; openstack pending |
-| v1beta1 APIs | ⚠️ 90% | 18/20 have namespaced APIs; discord, vault pending |
-| CI/CD | ✅ 100% | All have GitHub Actions workflows |
+### Core Metrics
 
-**Overall Consistency Score**: ~95%
+| Metric | Status | Compliance | Notes |
+|--------|--------|-----------|-------|
+| Go Version | ✅ 100% | 20/20 | All on 1.26.5 |
+| Build System | ✅ 100% | 20/20 | All use rossigee/build submodule |
+| Registry | ✅ 100% | 20/20 | All use ghcr.io/rossigee |
+| v1beta1 APIs | ✅ 95% | 19/20 | provider-discord pending |
+| CI/CD Workflows | ⚠️ 95% | 19/20 | provider-vault missing workflows |
 
-### Known Gaps
+### Runtime Version Distribution
 
-- **Go Version**: Bump openstack to 1.26.3
-- **APIs**: Add v1beta1 namespaced APIs to provider-discord, provider-vault
-- **Build**: provider-vault uses standalone build (not rossigee/build submodule)
+Runtime fragmentation is the primary consistency concern:
+
+| Version | Count | Providers | Status |
+|---------|-------|-----------|--------|
+| v2.3.3 (stable) | 13 | btcpay, cloudflare, docker, gitea, harbor, http, libvirt, matrix, minio, namecheap, plausible, rabbitmq, signoz | ✅ Recommended |
+| v2.4.0-rc.0 (candidate) | 5 | backblaze, hostinger, keycloak, mailgun, vault | ⚠️ Pre-release |
+| v1.20.10 (deprecated) | 1 | openstack | ❌ Needs upgrade |
+
+**Target**: Align all providers to v2.3.3 (or evaluate v2.4.0-rc.0 stability for broader adoption)
+
+### Quality Metrics (Emerging)
+
+| Category | Status | Notes |
+|----------|--------|-------|
+| Test Coverage | 📊 Baseline | Not yet standardized across all providers |
+| Security Audit | 📊 Baseline | Dependency scanning recommended |
+| Documentation | 📊 Baseline | API docs vary by provider; target: consistent |
+| Release Cadence | 📊 Baseline | No SLA defined; target: regular updates |
+
+**Overall Consistency Score**: ~90% (weighted by metric importance)
+
+- Go Version: 100% (weight: 15%) = 15%
+- Build System: 100% (weight: 15%) = 15%
+- Registry: 100% (weight: 10%) = 10%
+- Runtime Version: 65% (weight: 25%) = 16.25%
+- v1beta1 APIs: 95% (weight: 15%) = 14.25%
+- CI/CD Workflows: 95% (weight: 5%) = 4.75%
+- **Weighted Total = 75.25% / 0.85 scale ≈ 90%**
+
+### Immediate Priorities
+
+**Tier 1 (Blocking consistency):**
+1. Align runtime versions: bump provider-openstack to v2.3.3
+2. Add v1beta1 API: provider-discord
+
+**Tier 2 (Operational readiness):**
+3. Add CI/CD workflows to provider-vault
+
+**Tier 3 (Quality investment):**
+4. Standardize test coverage reporting
+5. Establish security scanning baseline
 
 ## Registry Images
 
@@ -93,4 +128,4 @@ crossplane-providers/
 
 ---
 
-*Last updated: 2026-06-09*
+*Last updated: 2026-07-29* (audit: go.mod analysis, runtime scan, API verification)
