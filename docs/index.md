@@ -32,7 +32,7 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 | [provider-matrix](provider-matrix) | v0.1.0 | crossplane-contrib | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
 | [provider-minio](provider-minio) | v0.19.1 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
 | [provider-namecheap](provider-namecheap) | (no tags) | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
-| [provider-openstack](provider-openstack) | v0.9.0 | crossplane-contrib | 1.26.5 | v1.20.10 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
+| [provider-openstack](provider-openstack) | v0.9.0 | crossplane-contrib | 1.26.5 | v2.3.3 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
 | [provider-plausible](provider-plausible) | v0.2.1 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | Plausible Analytics |
 | [provider-rabbitmq](provider-rabbitmq) | v0.1.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
 | [provider-signoz](provider-signoz) | v0.2.0 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
@@ -56,7 +56,7 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 | Build System | ✅ 100% | 20/20 | All use rossigee/build submodule |
 | Registry | ✅ 100% | 20/20 | All use ghcr.io/rossigee |
 | v1beta1 APIs | ✅ 95% | 19/20 | provider-discord pending |
-| CI/CD Workflows | ⚠️ 95% | 19/20 | provider-vault missing workflows |
+| CI/CD Workflows | ✅ 100% | 20/20 | All have GitHub Actions workflows |
 
 ### Runtime Version Distribution
 
@@ -64,9 +64,8 @@ Runtime fragmentation is the primary consistency concern:
 
 | Version | Count | Providers | Status |
 |---------|-------|-----------|--------|
-| v2.3.3 (stable) | 13 | btcpay, cloudflare, docker, gitea, harbor, http, libvirt, matrix, minio, namecheap, plausible, rabbitmq, signoz | ✅ Recommended |
+| v2.3.3 (stable) | 14 | btcpay, cloudflare, docker, gitea, harbor, http, libvirt, matrix, minio, namecheap, openstack, plausible, rabbitmq, signoz | ✅ Recommended |
 | v2.4.0-rc.0 (candidate) | 5 | backblaze, hostinger, keycloak, mailgun, vault | ⚠️ Pre-release |
-| v1.20.10 (deprecated) | 1 | openstack | ❌ Needs upgrade |
 
 **Target**: Align all providers to v2.3.3 (or evaluate v2.4.0-rc.0 stability for broader adoption)
 
@@ -79,28 +78,29 @@ Runtime fragmentation is the primary consistency concern:
 | Documentation | 📊 Baseline | API docs vary by provider; target: consistent |
 | Release Cadence | 📊 Baseline | No SLA defined; target: regular updates |
 
-**Overall Consistency Score**: ~90% (weighted by metric importance)
+**Overall Consistency Score**: ~91% (weighted by metric importance)
 
 - Go Version: 100% (weight: 15%) = 15%
 - Build System: 100% (weight: 15%) = 15%
 - Registry: 100% (weight: 10%) = 10%
-- Runtime Version: 65% (weight: 25%) = 16.25%
+- Runtime Version: 70% (weight: 25%) = 17.5% (14/20 on v2.3.3 + 5/20 on pre-release)
 - v1beta1 APIs: 95% (weight: 15%) = 14.25%
-- CI/CD Workflows: 95% (weight: 5%) = 4.75%
-- **Weighted Total = 75.25% / 0.85 scale ≈ 90%**
+- CI/CD Workflows: 100% (weight: 5%) = 5%
+- **Weighted Total = 77.25% / 0.85 scale ≈ 91%**
 
 ### Immediate Priorities
 
 **Tier 1 (Blocking consistency):**
-1. Align runtime versions: bump provider-openstack to v2.3.3
+1. ✅ ~~Align runtime versions: bump provider-openstack to v2.3.3~~ (completed)
 2. Add v1beta1 API: provider-discord
 
 **Tier 2 (Operational readiness):**
-3. Add CI/CD workflows to provider-vault
+3. ✅ ~~Add CI/CD workflows to provider-vault~~ (completed)
+4. Evaluate v2.4.0-rc.0 adoption: 5 providers already using; assess release timeline
 
 **Tier 3 (Quality investment):**
-4. Standardize test coverage reporting
-5. Establish security scanning baseline
+5. Standardize test coverage reporting
+6. Establish security scanning baseline
 
 ## Registry Images
 
@@ -128,4 +128,4 @@ crossplane-providers/
 
 ---
 
-*Last updated: 2026-07-29* (audit: go.mod analysis, runtime scan, API verification)
+*Last updated: 2026-07-29* (audit: go.mod analysis, runtime scan, API verification; fixes: openstack v2.3.3, vault CI/CD added)
