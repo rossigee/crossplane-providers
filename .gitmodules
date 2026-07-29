@@ -79,3 +79,6 @@
 	path = build
 	url = git@github.com:rossigee/build.git
 	branch = main
+[submodule "provider-vault"]
+	path = provider-vault
+	url = ./provider-vault
