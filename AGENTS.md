@@ -37,8 +37,11 @@ This repository contains a collection of Crossplane providers for managing exter
   - **✅ FIXED**: Registry conflicts resolved with standardization
 - **provider-http** (v1.2.0) - Generic HTTP request resources
   - Registry: `ghcr.io/rossigee/provider-http:v1.2.0`
-- **provider-vault** (v2.4.0) - HashiCorp Vault secrets management
-  - Registry: `ghcr.io/rossigee/provider-vault:v2.4.0`
+- **provider-vault** (v0.2.7) - HashiCorp Vault secrets management
+  - Registry: `ghcr.io/rossigee/provider-vault:v0.2.7`
+  - **✅ FIXED**: `SetWriteConnectionSecretToReference` added to all 16 managed resources (2026-07-29)
+  - **✅ FIXED**: AppRoleSecretID metadata JSON serialization (Vault expects string, not map)
+  - **✅ FIXED**: AppRoleSecretID deletion reads from K8s connection secret for secret_id recovery
 - **provider-openstack** (v0.10.0) - OpenStack cloud resources
   - Registry: `ghcr.io/rossigee/provider-openstack:v0.10.0`
 
@@ -88,7 +91,7 @@ make clean          # Clean build artifacts
 ## Standardized Build Requirements ✅
 
 ### **Prerequisites**
-- **Go 1.24+**: Required for all providers
+- **Go 1.26.5**: Current standard for all providers (verify with `./scripts/audit_standards.sh`; see `docs/index.md` for live compliance status)
 - **Docker**: For container image builds
 - **Make**: Build orchestration
 - **Git Submodules**: Essential for build system
@@ -111,10 +114,14 @@ make clean          # Clean build artifacts
    - Remove any `.golangci.yml` files that cause version conflicts
    - Build submodule provides compatible configuration
 
-4. **Go Version Compatibility**: Ensure Makefile settings match regex parsing
+4. **Go Version Compatibility**: `GO_REQUIRED_VERSION` in each provider's
+   Makefile is a legacy convention — as of the current `rossigee/build`
+   submodule (`rossigee-lint-fixes` branch), this variable is not referenced
+   anywhere in `build/makelib/*.mk`, so its value has no functional effect.
+   The actual required version comes from `go.mod` and
+   `.github/workflows/ci.yml`'s `GO_VERSION` env var (currently `1.26.5`).
    ```makefile
-   # Use 1.24 not 1.24.5 due to version parsing
-   GO_REQUIRED_VERSION ?= 1.24
+   GO_REQUIRED_VERSION ?= 1.26.5  # kept for convention/documentation only
    ```
 
 ### **Validation Commands**
