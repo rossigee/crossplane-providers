@@ -97,17 +97,36 @@ suffix, no SSH) on branch `rossigee-lint-fixes` @ `1a4ba40`:
 - **provider-keycloak**: remote changed from SSH (`git@github.com:rossigee/build.git`) to HTTPS; confirmed `git fetch` and `make lint` still work.
 - **provider-minio**: trailing `.git` suffix removed from the remote URL (cosmetic).
 
-**Known unrelated issue found while verifying provider-openstack**: its
-`go.mod`/`go.sum` reference both `crossplane-runtime v1.20.x` and
-`crossplane-runtime/v2 v2.3.3` simultaneously, and the two are incompatible
-(`v1.20.x`'s status-writer type doesn't implement the v2
-`SubResourceWriter` interface) — `go build ./...` fails on a fresh module
-cache. A commit titled "deps: remove deprecated v1.20.10 runtime
-requirement" indicates this was previously fixed and has since regressed.
+**Known unrelated issue found while verifying provider-openstack — root
+cause identified, not fixed**. `apis/blockstorage/v1alpha1` (upjet-generated)
+imports `github.com/crossplane/crossplane-runtime` (the legacy, non-`/v2`
+module) directly for `apis/common/v1` reference/selector types, alongside
+`crossplane-runtime/v2 v2.3.3` used elsewhere in the provider. That alone
+is just a missing `go.sum` entry (`go mod tidy` fixes it cleanly). The real
+problem: **the legacy `crossplane-runtime` module's entire release lineage,
+up to and including the latest `v1.20.10`, only supports `controller-runtime`
+up to `v0.19.0`** — its `pkg/resource/unstructured.wrapperStatusClient`
+never implements the `Apply` method that `controller-runtime`'s
+`client.SubResourceWriter` interface gained between `v0.19.0` and the
+`v0.24.1` this project resolves (pulled up by `crossplane-runtime/v2` and
+other deps via MVS). Confirmed by trying `v1.20.10` directly — same
+compile error. No dependency version bump fixes this.
+
+The actual fix requires either (a) migrating
+`apis/blockstorage/v1alpha1`'s upjet-generated code off legacy
+`crossplane-runtime` reference types onto `crossplane-runtime/v2`
+equivalents — an upjet code-generation config change, likely affecting the
+whole 14-category provider, not just blockstorage — or (b) downgrading
+`controller-runtime` project-wide, which risks breaking `crossplane-runtime/v2`
+and other newer dependencies. Neither attempted; this needs dedicated,
+focused work, not a quick fix. A commit titled "deps: remove deprecated
+v1.20.10 runtime requirement" indicates a previous attempt regressed.
 There's also a stale, gitignored `vendor/` directory (dated 2026-07-28) out
 of sync with the current `go.mod`. Neither `go.mod`/`go.sum` nor `vendor/`
-were changed as part of this audit — this is flagged as a separate,
-pre-existing bug for a dedicated fix, not a standards/consistency issue.
+were changed — this is flagged as a separate, pre-existing bug, not a
+standards/consistency issue, and provider-openstack's build submodule
+realignment (see above) remains uncommitted pending this fix, since
+`make test` must pass before any commit per this session's working rule.
 
 ### provider-discord v1beta1 Controllers (fixed 2026-08-10)
 
@@ -310,7 +329,7 @@ distinct-but-equally-secure lineages, see above).
 2. ~~Decide whether provider-openstack should track `rossigee-lint-fixes` like the rest~~ — decided: yes, realigned; this also fixed an orphaned/unreachable commit pin (see above)
 3. ~~Evaluate v2.4.0-rc.0 adoption~~ — turned out to be a security gap, not a style choice; fixed by bumping all 5 affected providers to a patched `rossigee/crossplane-runtime` fork commit (see Runtime Version Distribution above)
 4. Track upstream crossplane-runtime security backports into the `rossigee/crossplane-runtime` fork on an ongoing basis so this gap doesn't reopen — not yet scheduled/automated
-5. Fix provider-openstack's crossplane-runtime v1/v2 dependency conflict (`go build` currently fails on a fresh module cache) — see note above
+5. Fix provider-openstack's crossplane-runtime v1/v2 conflict — root cause diagnosed (legacy crossplane-runtime's whole release lineage caps at controller-runtime v0.19.0, incompatible with the v0.24.1 this project resolves), no version bump fixes it; needs either an upjet codegen migration off legacy crossplane-runtime types or a project-wide controller-runtime downgrade — see note above
 
 **Tier 3 (Quality investment) — ✅ items 6, 7, 9 done 2026-08-10:**
 6. ~~Apply OCI labels to all providers~~ — done, 20/20 at 7/7 (see OCI Label & README Compliance above)
