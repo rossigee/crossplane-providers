@@ -1,6 +1,12 @@
 # Crossplane Provider CI/CD Templates
 
-**Version 2025-10-28** - Standardized GitHub Actions workflows for all Crossplane providers.
+**Version 2026-08-20** - Standardized GitHub Actions workflows + .golangci.yml for all Crossplane providers.
+
+All providers now use:
+- Go 1.26.6
+- golangci-lint v2 with .golangci.yml (gofmt + goimports + core linters)
+- Full security scanning (govulncheck + gosec SARIF upload) in CI + security.yml
+- Consistent rossigee/build makelib for `make lint` etc.
 
 ## CI/CD Consistency Analysis & Updates
 
@@ -10,22 +16,21 @@
 
 | Issue | Before | After | Status |
 |-------|--------|-------|--------|
-| **Go Version** | Mixed (1.25.1 in templates, 1.25.3 in providers) | Go 1.25.3 (latest) | ✅ **Fixed** |
-| **Setup-Go Action** | @v5 (older) | @v6 (latest) | ✅ **Fixed** |
-| **Build Validation** | Mixed approaches (`make build`, `do.build.images`) | `make docker.build` (standard) | ✅ **Documented** |
-| **Security Upload** | Failed on SARIF errors | `continue-on-error: true` | ✅ **Fixed** |
-| **Documentation** | Outdated version references | Updated for Go 1.25.3 | ✅ **Fixed** |
+| **Go Version** | Mixed (1.25.x) | Go 1.26.6 + GO_REQUIRED_VERSION in Makefiles | ✅ **Fixed** |
+| **Lint Config** | None or per-repo | Identical .golangci.yml (v2) in all + templates | ✅ **Fixed** |
+| **CI Structure** | Inconsistent (some missing security-scan) | Standardized template + full gosec/govuln/SARIF in ci.yml | ✅ **Fixed** (outliers migrated) |
+| **Actions** | Mixed v4/v5 | checkout@v7 + setup-go@v6 | ✅ **Fixed** |
+| **Templates** | Stale (1.26.5, old comments) | Updated + .golangci.yml added | ✅ **Fixed** |
 
 ### Provider Update Status
 
-**✅ Fully Updated (Go 1.25.3 + @v6)**:
-- provider-mailgun, provider-minio, provider-plausible, provider-signoz, provider-gitea
+**All 20 providers are now aligned** (as of 2026-08 sweep + follow-ups):
+- .golangci.yml present and identical in all
+- ci.yml follows standardized template (with security-scan job)
+- GO 1.26.6 everywhere in workflows + Makefiles
+- Outliers (hostinger, minio, btcpay) migrated to full template
 
-**⚠️ Partially Updated (Go 1.25.3 + @v5)**:
-- provider-backblaze (uses `do.build.images` instead of `docker.build`)
-
-**❌ Not Yet Updated**:
-- Remaining 10 providers need template re-application
+Special providers retain documented customizations (extra workflows, CGO, terraform generators).
 
 ## Overview
 
@@ -46,8 +51,8 @@ This directory contains standardized CI/CD templates designed to:
 **After**: Standardized templates providing:
 - ⭐ **Zero scheduled emails** (on-demand security scanning only)
 - 🏷️ **Clean registry tags** (CI validates, Release publishes)
-- ⚡ **Modern tooling** (Go 1.25.1, ubuntu-24.04, latest actions)
-- 📋 **Consistent patterns** across all providers
+- ⚡ **Modern tooling** (Go 1.26.6, ubuntu-24.04, checkout@v7, setup-go@v6, golangci-lint v2)
+- 📋 **Consistent patterns** across all 20 providers + .golangci.yml lint config
 
 ## Version History
 

@@ -1,5 +1,5 @@
 # Standardized CI/CD Template for Crossplane Providers
-# Version: 2025-10-28 - Updated for Go 1.25.3
+# Version: 2026-08-20 - Updated for Go 1.26.6 + golangci-lint v2 + full security scanning
 #
 # This template implements CI builds and validates ONLY
 # - CI: Build validation only (no publishing to avoid tag conflicts)
@@ -22,11 +22,12 @@ on:
 
 permissions:
   contents: read
-  packages: write
-  actions: read
+  packages: write  # Needed for security scanning uploads
+  id-token: write  # Needed for OIDC
+  actions: read    # Needed for detecting duplicate actions
 
 env:
-  GO_VERSION: '1.26.5'
+  GO_VERSION: '1.26.6'
   GOLANGCI_VERSION: '2.12.2'
   GOLANGCILINT_VERSION: '2.12.2'
   DOCKER_BUILDX_VERSION: 'v0.11.2'
@@ -53,6 +54,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
+          token: ${{ github.token }}
           submodules: true
 
       - name: Setup Go
@@ -74,6 +76,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
+          token: ${{ github.token }}
           submodules: true
 
       - name: Setup Go
@@ -97,6 +100,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
+          token: ${{ github.token }}
           submodules: true
           fetch-depth: 0
 
@@ -129,6 +133,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
+          token: ${{ github.token }}
           submodules: true
 
       - name: Setup Go
