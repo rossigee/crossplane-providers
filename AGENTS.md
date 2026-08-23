@@ -1,7 +1,23 @@
 # Crossplane Providers Repository
 
 ## Overview
-This repository contains a collection of Crossplane providers for managing external infrastructure and services through Kubernetes. Each provider enables declarative, GitOps-style management of specific platforms.
+This repository contains a collection of hand-written native Crossplane providers for managing external infrastructure and services through Kubernetes. Each provider is a custom implementation (never terraform-generated) that enables declarative, GitOps-style management of specific platforms.
+
+### 🚫 **Architectural Mandate: NO Terraform/Upjet Dependencies**
+
+All providers in this repository are **native Crossplane implementations only**. We explicitly forbid:
+- ✅ ❌ `upjet` (Crossplane terraform scaffolding)
+- ✅ ❌ `terraform-plugin-sdk` / `terraform-plugin-framework`
+- ✅ ❌ `terraform-provider-*` packages
+- ✅ ❌ Hashicorp terraform dependencies of any kind
+
+**Why?** Hand-written providers deliver:
+1. **5-10x smaller binaries** - No generated scaffolding bloat
+2. **Simpler code** - Direct API clients are easier to understand, debug, maintain
+3. **Reduced attack surface** - Fewer dependencies = fewer vulnerabilities
+4. **Better K8s integration** - Native Crossplane APIs provide superior resource mgmt
+
+**Enforcement:** Any contribution using terraform scaffolding will be rejected. New providers must be hand-written native Crossplane implementations.
 
 ## Active Providers - **ALL PROVIDERS STANDARDIZED (2025-07-24)**
 
