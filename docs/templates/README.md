@@ -1,12 +1,13 @@
 # Crossplane Provider CI/CD Templates
 
-**Version 2026-08-20** - Standardized GitHub Actions workflows + .golangci.yml for all Crossplane providers.
+**Version 2026-09-08** - Standardized GitHub Actions workflows + .golangci.yml for all Crossplane providers.
 
 All providers now use:
-- Go 1.26.6
-- golangci-lint v2 with .golangci.yml (gofmt + goimports + core linters)
+- Go 1.27.1
+- golangci-lint 2.13.2 with .golangci.yml (gofmt + goimports + core linters)
+- pre-commit v6.0.0 + hadolint v2.12.0 (excludes `tools/` and `*_test.go` where appropriate)
 - Full security scanning (govulncheck + gosec SARIF upload) in CI + security.yml
-- Consistent rossigee/build makelib for `make lint` etc.
+- Consistent rossigee/build makelib for `make lint` etc. (`rossigee-lint-fixes @ e5bf20a`, runtime v2.5.0)
 
 ## CI/CD Consistency Analysis & Updates
 
@@ -16,18 +17,20 @@ All providers now use:
 
 | Issue | Before | After | Status |
 |-------|--------|-------|--------|
-| **Go Version** | Mixed (1.25.x) | Go 1.26.6 + GO_REQUIRED_VERSION in Makefiles | ✅ **Fixed** |
-| **Lint Config** | None or per-repo | Identical .golangci.yml (v2) in all + templates | ✅ **Fixed** |
+| **Go Version** | Mixed (1.25.x) | Go 1.27.1 + GO_REQUIRED_VERSION in Makefiles | ✅ **Fixed** (2026-09-08) |
+| **Lint Config** | None or per-repo | Identical .golangci.yml (v2, golangci-lint 2.13.2) in all + templates | ✅ **Fixed** |
 | **CI Structure** | Inconsistent (some missing security-scan) | Standardized template + full gosec/govuln/SARIF in ci.yml | ✅ **Fixed** (outliers migrated) |
 | **Actions** | Mixed v4/v5 | checkout@v7 + setup-go@v6 | ✅ **Fixed** |
 | **Templates** | Stale (1.26.5, old comments) | Updated + .golangci.yml added | ✅ **Fixed** |
+| **pre-commit / hadolint** | Mixed / missing excludes | pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes | ✅ **Fixed** (2026-09-08) |
 
 ### Provider Update Status
 
-**All 20 providers are now aligned** (as of 2026-08 sweep + follow-ups):
-- .golangci.yml present and identical in all
-- ci.yml follows standardized template (with security-scan job)
-- GO 1.26.6 everywhere in workflows + Makefiles
+**All 20 providers are now aligned** (as of 2026-09-08):
+- .golangci.yml present and identical in all (golangci-lint 2.13.2)
+- ci.yml follows standardized template (with security-scan job) — `GO_VERSION: '1.27.1'`
+- GO 1.27.1 everywhere in workflows + Makefiles + go.mod (verified via `scripts/audit_standards.sh`)
+- pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes standardized
 - Outliers (hostinger, minio, btcpay) migrated to full template
 
 Special providers retain documented customizations (extra workflows, CGO, terraform generators).
@@ -37,8 +40,8 @@ Special providers retain documented customizations (extra workflows, CGO, terraf
 This directory contains standardized CI/CD templates designed to:
 - ✅ **Eliminate email spam** from scheduled security scans
 - ✅ **Prevent tag conflicts** between CI and release workflows
-- ✅ **Standardize build processes** across all 16 providers
-- ✅ **Modernize tooling** to Go 1.25.3 and latest actions
+- ✅ **Standardize build processes** across all 20 providers
+- ✅ **Modernize tooling** to Go 1.27.1 and latest actions (golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)
 
 ## Problem Solved
 
@@ -51,12 +54,21 @@ This directory contains standardized CI/CD templates designed to:
 **After**: Standardized templates providing:
 - ⭐ **Zero scheduled emails** (on-demand security scanning only)
 - 🏷️ **Clean registry tags** (CI validates, Release publishes)
-- ⚡ **Modern tooling** (Go 1.26.6, ubuntu-24.04, checkout@v7, setup-go@v6, golangci-lint v2)
+- ⚡ **Modern tooling** (Go 1.27.1, ubuntu-24.04, checkout@v7, setup-go@v6, golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)
 - 📋 **Consistent patterns** across all 20 providers + .golangci.yml lint config
+- 🧹 **Clean excludes** (`tools/` and `*_test.go` excluded from go-fmt/go-imports/go-vet where needed)
 
 ## Version History
 
-### 2025-10-28 (Current)
+### 2026-09-08 (Current)
+**Go 1.27.1 + golangci-lint 2.13.2 upgrade**:
+- ✅ **Go 1.27.1** everywhere (`go.mod`, `Makefile GO_REQUIRED_VERSION`, `ci.yml GO_VERSION`)
+- ✅ **golangci-lint 2.13.2** (`.golangci.yml` + `Makefile GOLANGCILINT_VERSION`)
+- ✅ **pre-commit v6.0.0 + hadolint v2.12.0** standardized; `tools/` and `*_test.go` excludes added (e.g. `exclude: 'zz_generated\..*\.go$|tools/'` and `_test.go` for no-commit-secrets)
+- ✅ **build @ e5bf20a** (`rossigee-lint-fixes`) + **runtime v2.5.0** (`rossigee/crossplane-runtime` fork) across all 20 providers
+- ✅ **Docs refreshed**: `docs/index.md` Latest Version + Core Metrics updated from `git describe --tags` ground truth
+
+### 2025-10-28
 **CI/CD Consistency Analysis & Updates**:
 - ✅ **Go version standardized**: Updated to Go 1.25.3 across all templates
 - ✅ **Modernized actions**: actions/setup-go@v6 (latest version)
@@ -104,7 +116,7 @@ This directory contains standardized CI/CD templates designed to:
 - Parallel validation jobs for speed
 - Comprehensive security scanning (integrated into CI)
 - Build validation without registry publishing
-- Go 1.25.3 with modern tooling
+- Go 1.27.1 with modern tooling (golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)
 
 **Standardized Build Validation**:
 ```bash
@@ -237,7 +249,7 @@ git commit -m "Standardize CI/CD workflows
 - Apply standardized templates from docs/templates/
 - Remove scheduled security scans to eliminate email spam
 - Separate CI (validation) from Release (publishing)
-- Update to Go 1.25.1 and modern tooling"
+- Update to Go 1.27.1 and modern tooling (golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)"
 ```
 
 ### Step 2: Validate Configuration
@@ -321,7 +333,7 @@ echo ""
 echo "🎯 Template application completed!"
 echo "📧 Scheduled security scans removed (no more email spam)"
 echo "🏷️ CI/Release workflows standardized"
-echo "⚡ Updated to Go 1.25.1 and modern tooling"
+echo "⚡ Updated to Go 1.27.1 and modern tooling (golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)"
 ```
 
 ## Migration Checklist
@@ -345,7 +357,7 @@ For each provider:
 - 📧 **Email reduction**: 112+ weekly → 0 scheduled emails
 - 📝 **Consistency**: 3 patterns → 1 unified standard
 - 📁 **File reduction**: 57+ workflows → 48 standardized (15% reduction)
-- ⚡ **Modern tooling**: Go 1.25.1, ubuntu-24.04, latest actions
+- ⚡ **Modern tooling**: Go 1.27.1, ubuntu-24.04, latest actions (golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)
 - 🏷️ **Clean registry**: No more tag conflicts between workflows
 - 🤖 **Automated dependency updates**: Dependabot creates PRs weekly on Fridays
 - 🔀 **Auto-merge for safe updates**: Minor/patch Go, Actions, Docker updates merge automatically after CI passes

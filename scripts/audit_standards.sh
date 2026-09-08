@@ -7,9 +7,11 @@
 #
 # Canonical standard (derived from docs/templates/ci-template.yml and the
 # rossigee/build submodule, which are more authoritative than prose docs):
-#   - Go version:            1.26.5
-#   - golangci-lint version: 2.12.2
-#   - build submodule:       github.com/rossigee/build @ rossigee-lint-fixes
+#   - Go version:            1.27.1
+#   - golangci-lint version: 2.13.2
+#   - build submodule:       github.com/rossigee/build @ rossigee-lint-fixes @ e5bf20a
+#   - runtime:               crossplane-runtime/v2 v2.5.0 (rossigee fork)
+#   - pre-commit:            v6.0.0, hadolint v2.12.0
 #   - workflows:             ci.yml, release.yml, security.yml, auto-merge.yml,
 #                             .github/dependabot.yml
 #   - package/crossplane.yaml (not package.yaml)
@@ -22,8 +24,8 @@ set -u
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 
-STD_GO_VERSION="1.26.5"
-STD_LINT_VERSION="2.12.2"
+STD_GO_VERSION="1.27.1"
+STD_LINT_VERSION="2.13.2"
 STD_BUILD_BRANCH="rossigee-lint-fixes"
 STD_BUILD_URL="https://github.com/rossigee/build"
 

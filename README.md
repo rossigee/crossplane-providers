@@ -61,7 +61,7 @@ kubectl --kubeconfig ~/.kube/CLUSTER-admin.conf patch provider provider-minio \
 
 ## Standards
 
-- All providers use Go 1.26+ (or closest available)
+- All providers use Go 1.27.1
 - Standardized CI/CD with GitHub Actions
 - Primary registry: `ghcr.io/rossigee`
 - Build submodule: `rossigee/build`

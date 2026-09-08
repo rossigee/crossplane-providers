@@ -15,38 +15,35 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 
 ## Providers
 
-> ⚠️ **Known stale as of 2026-08-10**: the `Latest Version` column below was
-> not refreshed as part of this audit and has confirmed drift — spot checks
-> found provider-vault, provider-keycloak, and provider-namecheap all show
-> "(no tags)" but actually have real releases (v0.2.36, v0.2.45, v0.5.11
-> respectively), and provider-gitea shows v0.8.2 while the actual latest tag
-> is v0.10.2. `scripts/audit_standards.sh` does not check version tags —
-> this table needs a dedicated refresh (`scripts/update-docs.sh` may already
-> do this; verify before relying on the numbers below for anything
-> release-related).
+> ✅ **Refreshed 2026-09-08**: `Latest Version` column refreshed from
+> `git -C provider-*/ describe --tags --abbrev=0` (ground truth: Go 1.27.1,
+> golangci-lint 2.13.2, build `rossigee-lint-fixes @ e5bf20a`, runtime
+> `crossplane-runtime/v2 v2.5.0` via `rossigee/crossplane-runtime` fork,
+> pre-commit v6.0.0 / hadolint v2.12.0). If this banner is stale, re-run
+> `scripts/audit_standards.sh` and `scripts/update-docs.sh` to re-verify.
 
 | Provider | Latest Version | Origin | Go Version | Runtime | v1 API | v2 API | Build | Upjet/TF | Status | Notes |
 |----------|---------------|--------|------------|--------|--------|-------|----------|--------|-------|
-| [provider-backblaze](provider-backblaze) | v0.12.9 | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | In Dev | Backblaze B2 storage (buckets, keys, policies) |
-| [provider-btcpay](provider-btcpay) | v0.4.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | BTCPay Server (stores, invoices, webhooks) |
-| [provider-cloudflare](provider-cloudflare) | v0.13.0 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | Cloudflare DNS, security, WAF, firewall |
-| [provider-discord](provider-discord) | v0.9.0 | rossigee | 1.26.5 | v2.3.3 | Yes | No | Yes | No | In Dev | Discord server management |
-| [provider-docker](provider-docker) | v0.1.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | Docker containers and compose stacks |
-| [provider-gitea](provider-gitea) | v0.8.2 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | Gitea repository management |
-| [provider-harbor](provider-harbor) | v0.13.0 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | Harbor container registry |
-| [provider-hostinger](provider-hostinger) | v0.1.0 | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | In Dev | Hostinger VPS and cloud services |
-| [provider-http](provider-http) | v1.1.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | Standard | Generic HTTP request resources |
-| [provider-keycloak](provider-keycloak) | (no tags) | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | In Dev | Keycloak identity management |
-| [provider-libvirt](provider-libvirt) | (no tags) | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | Upjet | In Dev | KVM/libvirt virtual machines |
-| [provider-mailgun](provider-mailgun) | v0.14.3 | rossigee | 1.26.5 | v2.4.0-rc.0 | No | Yes | Yes | No | Production | Mailgun email service |
-| [provider-matrix](provider-matrix) | v0.1.0 | crossplane-contrib | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
-| [provider-minio](provider-minio) | v0.19.1 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
-| [provider-namecheap](provider-namecheap) | (no tags) | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
-| [provider-openstack](provider-openstack) | v0.9.0 | crossplane-contrib | 1.26.5 | v2.3.3 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
-| [provider-plausible](provider-plausible) | v0.2.1 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | Production | Plausible Analytics |
-| [provider-rabbitmq](provider-rabbitmq) | v0.1.0 | rossigee | 1.26.5 | v2.3.3 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
-| [provider-signoz](provider-signoz) | v0.2.0 | rossigee | 1.26.5 | v2.3.3 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
-| [provider-vault](provider-vault) | (no tags) | rossigee | 1.26.5 | v2.4.0-rc.0 | Yes | Yes | No | No | In Dev | HashiCorp Vault secrets management |
+| [provider-backblaze](provider-backblaze) | v0.13.6 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Backblaze B2 storage (buckets, keys, policies) |
+| [provider-btcpay](provider-btcpay) | v0.4.5 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | BTCPay Server (stores, invoices, webhooks) |
+| [provider-cloudflare](provider-cloudflare) | v0.14.15 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Cloudflare DNS, security, WAF, firewall |
+| [provider-discord](provider-discord) | v0.14.16 | rossigee | 1.27.1 | v2.5.0 | Yes | No | Yes | No | In Dev | Discord server management |
+| [provider-docker](provider-docker) | v0.3.13 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Docker containers and compose stacks |
+| [provider-gitea](provider-gitea) | v0.10.33 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Gitea repository management |
+| [provider-harbor](provider-harbor) | v0.17.5 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Harbor container registry |
+| [provider-hostinger](provider-hostinger) | v0.1.11 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Hostinger VPS and cloud services |
+| [provider-http](provider-http) | v1.2.3 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Generic HTTP request resources |
+| [provider-keycloak](provider-keycloak) | v0.2.61 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Keycloak identity management |
+| [provider-libvirt](provider-libvirt) | v0.9.45 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | In Dev | KVM/libvirt virtual machines |
+| [provider-mailgun](provider-mailgun) | v0.20.5 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Mailgun email service |
+| [provider-matrix](provider-matrix) | v0.3.3 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
+| [provider-minio](provider-minio) | v0.20.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
+| [provider-namecheap](provider-namecheap) | v0.5.13 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
+| [provider-openstack](provider-openstack) | v1.0.0 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
+| [provider-plausible](provider-plausible) | v0.2.4 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Plausible Analytics |
+| [provider-rabbitmq](provider-rabbitmq) | v0.2.11 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
+| [provider-signoz](provider-signoz) | v0.4.17 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
+| [provider-vault](provider-vault) | v0.2.43 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | No | No | In Dev | HashiCorp Vault secrets management |
 
 ## Summary Statistics
 
@@ -73,10 +70,10 @@ numbers:
 
 | Metric | Status | Compliance | Notes |
 |--------|--------|-----------|-------|
-| Go Version (go.mod) | ✅ 100% | 20/20 | All on 1.26.5 |
+| Go Version (go.mod) | ✅ 100% | 20/20 | All on 1.27.1 |
 | Makefile `GO_REQUIRED_VERSION` | ℹ️ 95% | 19/20 | provider-libvirt: unset. Not a functional gap — this variable is not referenced anywhere in the current `rossigee/build` submodule, so it's dead configuration for all 20 providers |
-| golangci-lint version | ✅ 100% | 20/20 | All pinned to 2.12.2 |
-| Build submodule (URL+branch+commit) | ✅ 100% | 20/20 | All fixed 2026-08-10 — see resolution notes below |
+| golangci-lint version | ✅ 100% | 20/20 | All pinned to 2.13.2 |
+| Build submodule (URL+branch+commit) | ✅ 100% | 20/20 | All on `rossigee-lint-fixes @ e5bf20a` — refreshed 2026-09-08 (Go 1.27.1 / golangci-lint 2.13.2) |
 | Registry | ✅ 100% | 20/20 | All use ghcr.io/rossigee |
 | v1beta1 API controllers | ✅ 100% | 20/20 | provider-discord fixed 2026-08-10 — types existed but had no controllers wired up (see note below); all 9 resources now have namespaced v1beta1 controllers alongside the existing cluster-scoped v1alpha1 ones |
 | CI/CD core workflows (ci/release/security/auto-merge) | ✅ 100% | 20/20 | All four present |
@@ -87,13 +84,14 @@ numbers:
 | README standard (6 required sections) | ✅ 100% | 20/20 | Fixed 2026-08-10 — several also had real factual inaccuracies corrected along the way, see below |
 | gitea RepositoryKey/RepositorySecret controllers | ✅ 100% | 2/2 | Fixed 2026-08-10 — written but never wired into `controller.go`; found while rewriting the README |
 
-### Build Submodule Deviations — ✅ resolved 2026-08-10
+### Build Submodule Deviations — ✅ resolved 2026-08-10, refreshed 2026-09-08
 
 All 20 providers now use `https://github.com/rossigee/build` (no `.git`
-suffix, no SSH) on branch `rossigee-lint-fixes` @ `1a4ba40`:
+suffix, no SSH) on branch `rossigee-lint-fixes` @ `e5bf20a` (Go 1.27.1,
+golangci-lint 2.13.2, crossplane-runtime v2.5.0):
 
-- **provider-vault**: realigned from `main`@`080d633` to `rossigee-lint-fixes`@`1a4ba40`. `make lint`/`make test` verified.
-- **provider-openstack**: was pinned to `main`@`d636665`, which turned out to be **orphaned** — `rossigee/build`'s `main` branch had been force-pushed past it upstream, so a fresh clone could no longer fetch that commit at all. Realigned to `rossigee-lint-fixes`@`1a4ba40` (confirmed the target CLI version it downloads, `crossplane-cli v2.3.3`, is fetchable — HTTP 200 — unlike the older `v2.3.2` that a since-reverted commit on the orphaned branch had worked around).
+- **provider-vault**: realigned from `main`@`080d633` to `rossigee-lint-fixes`@`1a4ba40` (2026-08-10), now @ `e5bf20a` as of 2026-09-08 refresh. `make lint`/`make test` verified.
+- **provider-openstack**: was pinned to `main`@`d636665`, which turned out to be **orphaned** — `rossigee/build`'s `main` branch had been force-pushed past it upstream, so a fresh clone could no longer fetch that commit at all. Realigned to `rossigee-lint-fixes`@`1a4ba40` (2026-08-10), now @ `e5bf20a` as of 2026-09-08 (confirmed the target CLI version it downloads, `crossplane-cli v2.5.0`, is fetchable — HTTP 200 — unlike the older `v2.3.2` that a since-reverted commit on the orphaned branch had worked around).
 - **provider-keycloak**: remote changed from SSH (`git@github.com:rossigee/build.git`) to HTTPS; confirmed `git fetch` and `make lint` still work.
 - **provider-minio**: trailing `.git` suffix removed from the remote URL (cosmetic).
 
@@ -245,7 +243,7 @@ since the content already existed. A handful needed real work:
 | provider-signoz | 7 | 6 |
 | provider-vault | 7 | 6 |
 
-### Runtime Version Distribution — ⚠️ security finding, fixed 2026-08-10
+### Runtime Version Distribution — ✅ unified 2026-09-08 (was ⚠️ fixed 2026-08-10)
 
 This was previously logged as ordinary version fragmentation ("v2.3.3 stable
 vs v2.4.0-rc.0 pre-release, newer") — that framing was wrong and understated
@@ -281,8 +279,10 @@ have one pre-existing, unrelated lint failure predating this change).
 
 | Version | Count | Providers | Status |
 |---------|-------|-----------|--------|
-| v2.3.3 (stable, upstream) | 14 | btcpay, cloudflare, docker, gitea, harbor, http, libvirt, matrix, minio, namecheap, openstack, plausible, rabbitmq, signoz | ✅ |
-| rossigee fork @ 863d0d0 (events-recorder-fixes, security-patched) | 5 | backblaze, hostinger, keycloak, mailgun, vault | ✅ fixed 2026-08-10 |
+| v2.5.0 via rossigee fork (`replace github.com/crossplane/crossplane-runtime/v2 => github.com/rossigee/crossplane-runtime/v2 v2.5.0`) | 20 | all providers | ✅ unified 2026-09-08 |
+| *Historical (2026-08-10)*: v2.3.3 (14) + rossigee fork @ 863d0d0 (5) | 19 | *see 2026-08-10 notes below* | ✅ fixed 2026-08-10 |
+
+> 2026-09-08: all 20 `go.mod` now `require crossplane-runtime/v2 v2.5.0` with `replace => rossigee/crossplane-runtime/v2 v2.5.0` (verified via `grep -h crossplane-runtime provider-*/go.mod`). Pre-patch fragmentation closed.
 
 **Remaining work**: the fork's `events-recorder-fixes`/`k8s-0.36.3` branches
 should be treated as the org's ongoing crossplane-runtime baseline going
@@ -298,25 +298,20 @@ periodically so this gap doesn't reopen. Not yet automated or scheduled.
 | Documentation | 📊 Baseline | API docs vary by provider; target: consistent |
 | Release Cadence | 📊 Baseline | No SLA defined; target: regular updates |
 
-**Overall Consistency Score**: ~97% (weighted by metric importance; recomputed
-from `scripts/audit_standards.sh` ground truth — up from ~77% before the
-2026-08-10 fixes below; the original 91% figure never accounted for OCI
-labels or README compliance and overstated build-system consistency).
-The remaining gap is entirely the Runtime Version fragmentation (two
-distinct-but-equally-secure lineages, see above).
+**Overall Consistency Score**: ~99% (weighted by metric importance; recomputed
+from `scripts/audit_standards.sh` ground truth — up from ~97% on 2026-08-10
+when runtime was fragmented; now unified on v2.5.0 via rossigee fork,
+Go 1.27.1 / golangci-lint 2.13.2 / build e5bf20a).
 
-- Go Version: 100% (weight: 10%) = 10%
-- Build System (submodule URL+branch+commit): 100% (weight: 15%) = 15%
+- Go Version: 100% (weight: 10%) = 10% (all 20 on 1.27.1)
+- Build System (submodule URL+branch+commit): 100% (weight: 15%) = 15% (all on rossigee-lint-fixes @ e5bf20a)
 - Registry: 100% (weight: 10%) = 10%
-- Runtime Version: 80% (weight: 15%) = 12% (still two distinct lineages —
-  14/20 on plain upstream v2.3.3, 5/20 on the security-patched rossigee
-  fork — but the security gap between them is closed; remaining score loss
-  is pure fragmentation, not risk)
+- Runtime Version: 100% (weight: 15%) = 15% (all 20 on v2.5.0 via rossigee fork — unified 2026-09-08)
 - v1beta1 API controllers: 100% (weight: 10%) = 10%
 - CI/CD Workflows + Dependabot: 100% (weight: 10%) = 10%
 - OCI Labels: 100% (weight: 10%) = 10%
 - README Standard: 100% (weight: 20%) = 20%
-- **Weighted Total ≈ 97%**
+- **Weighted Total ≈ 100%** (minor residual: `Latest Version` refresh is manual via `scripts/update-docs.sh`; pre-commit/hadolint excludes `tools/` and `_test.go` now standardized — see docs/templates/README.md 2026-09-08)
 
 ### Immediate Priorities
 
@@ -345,10 +340,10 @@ distinct-but-equally-secure lineages, see above).
 All rossigee providers are published to `ghcr.io/rossigee/`:
 
 ```bash
-# Examples
-ghcr.io/rossigee/provider-minio:v0.19.1
-ghcr.io/rossigee/provider-mailgun:v0.14.3
-ghcr.io/rossigee/provider-harbor:v0.13.0
+# Examples (2026-09-08)
+ghcr.io/rossigee/provider-minio:v0.20.0
+ghcr.io/rossigee/provider-mailgun:v0.20.5
+ghcr.io/rossigee/provider-harbor:v0.17.5
 ```
 
 ## Directory Structure
@@ -367,4 +362,4 @@ crossplane-providers/
 
 ---
 
-*Last updated: 2026-08-10* (audit: `scripts/audit_standards.sh` ground-truth scan of go.mod, Makefile, .gitmodules, build/ submodule commits, .github/workflows, package/, Dockerfile, README.md across all 20 providers; runtime version and v1/v2 API columns carried over from prior manual audit, not yet covered by the script)
+*Last updated: 2026-09-08* (audit: `scripts/audit_standards.sh` ground-truth scan of go.mod, Makefile, .gitmodules, build/ submodule commits, .github/workflows, package/, Dockerfile, README.md across all 20 providers; Go 1.27.1 / golangci-lint 2.13.2 / build e5bf20a / runtime v2.5.0 / pre-commit v6.0.0 / hadolint v2.12.0; `Latest Version` refreshed via `git -C provider-*/ describe --tags --abbrev=0`)
