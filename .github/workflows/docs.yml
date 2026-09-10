@@ -33,7 +33,10 @@ jobs:
           hugo-version: '0.128.0'
 
       - name: Build documentation
-        run: hugo --source docs
+        run: |
+          hugo --source docs
+          # Fix relative links to include base path
+          find docs/public -name "*.html" -exec sed -i 's|href="provider-|href="/crossplane-providers/provider-|g' {} \;
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
