@@ -45,6 +45,11 @@ jobs:
           
           # Fix relative links to include base path
           find docs/public -name "*.html" -exec sed -i 's|href="provider-|href="/crossplane-providers/provider-|g' {} \;
+          find docs/public -name "*.html" -exec sed -i 's|href="/providers/|href="/crossplane-providers/providers/|g' {} \;
+          find docs/public -name "*.html" -exec sed -i 's|href="/standards/|href="/crossplane-providers/standards/|g' {} \;
+          find docs/public -name "*.html" -exec sed -i 's|href="/troubleshooting/|href="/crossplane-providers/troubleshooting/|g' {} \;
+          find docs/public -name "*.html" -exec sed -i 's|href="/maintenance-history/|href="/crossplane-providers/maintenance-history/|g' {} \;
+          find docs/public -name "*.html" -exec sed -i 's|href="/#|href="/crossplane-providers/#|g' {} \;
 
       - name: Setup Pages
         uses: actions/configure-pages@v6

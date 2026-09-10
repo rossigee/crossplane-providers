@@ -5,7 +5,7 @@ description: All Crossplane providers with versions and status
 
 # Providers
 
-This page contains the full provider table. For background on the columns, see the [Legend](/#legend).
+This page contains the full provider table. For background on the columns, see the [Legend](/crossplane-providers/#legend).
 
 > **Note**: This table is automatically generated. See `scripts/audit_standards.sh` for details.
 
