@@ -1,5 +1,9 @@
 # Crossplane Providers
 
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://rossigee.github.io/crossplane-providers/)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+[![20 Providers](https://img.shields.io/badge/providers-20-orange)](https://rossigee.github.io/crossplane-providers/)
+
 Native Crossplane providers for managing external infrastructure
 and services through Kubernetes — declarative, GitOps-style, no Terraform.
 
@@ -9,18 +13,13 @@ pointing at its own repository (see `.gitmodules`). File issues and PRs
 
 ## Providers
 
-20 providers. 5 Production (cloudflare, harbor, mailgun, minio, plausible),
-12 In Development, 3 Standard/third-party. All published to `ghcr.io/rossigee/`.
+20 providers. See the [Providers page](https://rossigee.github.io/crossplane-providers/) for the full list.
 
-See [docs/index.md](./docs/index.md) for versions, origins, API scope (v1/v2),
-and live standardization status (regenerated via `scripts/audit_standards.sh`).
+See [docs](https://rossigee.github.io/crossplane-providers/) for versions and live standardization status.
 
 ## Use
 
-**Requires Crossplane core >= v2.5.** See
-[docs/standards/platform.md](./docs/standards/platform.md) for the full
-platform baseline (runtime `v2.5.0` via `rossigee/crossplane-runtime` fork,
-CLI `v2.5.0`, Go `1.27.1`).
+**Requires Crossplane core >= v2.5.** See [Standards](https://rossigee.github.io/crossplane-providers/standards/) for the full platform baseline.
 
 ```bash
 # Install a provider (example)
