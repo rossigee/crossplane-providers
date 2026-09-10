@@ -1,6 +1,6 @@
 # Crossplane Providers
 
-Hand-written native Crossplane providers for managing external infrastructure
+Native Crossplane providers for managing external infrastructure
 and services through Kubernetes — declarative, GitOps-style, no Terraform.
 
 This is a **meta-repo**: each `provider-*` directory is a git submodule
@@ -55,7 +55,7 @@ vendor-before-generate, and pins CLI `v2.5.0` from the working
 
 ## Contribute
 
-New providers must be **hand-written native Crossplane** — no `upjet`,
+New providers must be **native Crossplane implementations** — no `upjet`,
 `terraform-plugin-sdk/framework`, `terraform-provider-*`, or Hashicorp
 dependencies (smaller binaries, simpler code, fewer CVEs). Upstream-derived
 exceptions (openstack, libvirt) are grandfathered, not a pattern to copy.

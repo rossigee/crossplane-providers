@@ -1,6 +1,6 @@
 # Crossplane Providers Repository
 
-Meta-repo of hand-written native Crossplane providers (GitOps management of
+Meta-repo of native Crossplane providers (GitOps management of
 external platforms). Each `provider-*` dir is a git submodule with its own
 repo — file issues/PRs per-provider. This repo tracks shared standards.
 

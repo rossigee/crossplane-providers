@@ -12,7 +12,7 @@ per-provider repositories (each `provider-*` dir is a git submodule).
 
 ## New provider checklist
 
-1. Hand-written native Crossplane only — no `upjet`, `terraform-plugin-sdk` /
+1. Native Crossplane implementations only — no `upjet`, `terraform-plugin-sdk` /
    `framework`, `terraform-provider-*` (see `AGENTS.md` mandate).
 2. Platform floor: Crossplane core `>= v2.5`, runtime `v2.5.0` via
    `rossigee/crossplane-runtime` fork — see `docs/standards/platform.md`.
