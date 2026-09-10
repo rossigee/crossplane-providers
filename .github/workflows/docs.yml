@@ -37,6 +37,7 @@ jobs:
           pip install -r docs/requirements.txt
 
       - name: Build documentation
+        working-directory: docs
         run: mkdocs build
 
       - name: Setup Pages
