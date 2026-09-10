@@ -11,28 +11,7 @@ We welcome contributions from the community! Whether you've found a bug, have a 
 
 ### Report Issues
 
-Found a bug or have a suggestion? Open an issue on the relevant provider repository:
-
-- [provider-backblaze issues](https://github.com/rossigee/provider-backblaze/issues)
-- [provider-btcpay issues](https://github.com/rossigee/provider-btcpay/issues)
-- [provider-cloudflare issues](https://github.com/rossigee/provider-cloudflare/issues)
-- [provider-discord issues](https://github.com/rossigee/provider-discord/issues)
-- [provider-docker issues](https://github.com/rossigee/provider-docker/issues)
-- [provider-gitea issues](https://github.com/rossigee/provider-gitea/issues)
-- [provider-harbor issues](https://github.com/rossigee/provider-harbor/issues)
-- [provider-hostinger issues](https://github.com/rossigee/provider-hostinger/issues)
-- [provider-http issues](https://github.com/rossigee/provider-http/issues)
-- [provider-keycloak issues](https://github.com/rossigee/provider-keycloak/issues)
-- [provider-libvirt issues](https://github.com/rossigee/provider-libvirt/issues)
-- [provider-mailgun issues](https://github.com/rossigee/provider-mailgun/issues)
-- [provider-matrix issues](https://github.com/rossigee/provider-matrix/issues)
-- [provider-minio issues](https://github.com/rossigee/provider-minio/issues)
-- [provider-namecheap issues](https://github.com/rossigee/provider-namecheap/issues)
-- [provider-openstack issues](https://github.com/rossigee/provider-openstack/issues)
-- [provider-plausible issues](https://github.com/rossigee/provider-plausible/issues)
-- [provider-rabbitmq issues](https://github.com/rossigee/provider-rabbitmq/issues)
-- [provider-signoz issues](https://github.com/rossigee/provider-signoz/issues)
-- [provider-vault issues](https://github.com/rossigee/provider-vault/issues)
+Found a bug or have a suggestion? Open an issue on the relevant provider repository. See the [providers list](/crossplane-providers/) for links to each repository.
 
 ### Submit Pull Requests
 
