@@ -25,16 +25,14 @@ Found a bug or have a suggestion? Open an issue on the relevant provider reposit
 - [provider-keycloak issues](https://github.com/rossigee/provider-keycloak/issues)
 - [provider-libvirt issues](https://github.com/rossigee/provider-libvirt/issues)
 - [provider-mailgun issues](https://github.com/rossigee/provider-mailgun/issues)
+- [provider-matrix issues](https://github.com/rossigee/provider-matrix/issues)
 - [provider-minio issues](https://github.com/rossigee/provider-minio/issues)
 - [provider-namecheap issues](https://github.com/rossigee/provider-namecheap/issues)
+- [provider-openstack issues](https://github.com/rossigee/provider-openstack/issues)
 - [provider-plausible issues](https://github.com/rossigee/provider-plausible/issues)
 - [provider-rabbitmq issues](https://github.com/rossigee/provider-rabbitmq/issues)
 - [provider-signoz issues](https://github.com/rossigee/provider-signoz/issues)
 - [provider-vault issues](https://github.com/rossigee/provider-vault/issues)
-
-For crossplane-contrib forks:
-- [provider-matrix issues](https://github.com/crossplane-contrib/provider-matrix/issues)
-- [provider-openstack issues](https://github.com/crossplane-contrib/provider-openstack/issues)
 
 ### Submit Pull Requests
 

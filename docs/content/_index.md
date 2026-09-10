@@ -23,10 +23,10 @@ A collection of lean, focused Crossplane providers designed for efficiency and o
 | [provider-keycloak](https://github.com/rossigee/provider-keycloak) | v0.4.0 | Keycloak identity management |
 | [provider-libvirt](https://github.com/rossigee/provider-libvirt) | v0.11.0 | KVM/libvirt virtual machines |
 | [provider-mailgun](https://github.com/rossigee/provider-mailgun) | v0.21.0 | Mailgun email service |
-| [provider-matrix](https://github.com/crossplane-contrib/provider-matrix) | v0.5.0 | Matrix homeserver management |
+| [provider-matrix](https://github.com/rossigee/provider-matrix) | v0.5.0 | Matrix homeserver management |
 | [provider-minio](https://github.com/rossigee/provider-minio) | v0.21.0 | MinIO object storage |
 | [provider-namecheap](https://github.com/rossigee/provider-namecheap) | v0.7.1 | Namecheap domains and DNS |
-| [provider-openstack](https://github.com/crossplane-contrib/provider-openstack) | v1.2.0 | OpenStack cloud resources |
+| [provider-openstack](https://github.com/rossigee/provider-openstack) | v1.2.0 | OpenStack cloud resources |
 | [provider-plausible](https://github.com/rossigee/provider-plausible) | v0.4.0 | Plausible Analytics |
 | [provider-rabbitmq](https://github.com/rossigee/provider-rabbitmq) | v0.5.0 | RabbitMQ management |
 | [provider-signoz](https://github.com/rossigee/provider-signoz) | v0.6.1 | SigNoz observability platform |
