@@ -4,7 +4,6 @@ site_author: Ross Golder
 site_url: https://rossigee.github.io/crossplane-providers/
 
 docs_dir: docs
-site_dir: _site
 
 nav:
   - Home: index.md
