@@ -9,10 +9,8 @@ A collection of lean, focused Crossplane providers designed for efficiency and o
 
 ## Quick Links
 
-- **[Providers](/crossplane-providers/providers/)** - Full provider table with versions, origins, and status
-- **[Standards](/crossplane-providers/standards/)** - Platform requirements and provider conventions
-- **[Troubleshooting](/crossplane-providers/troubleshooting/)** - Common issues and solutions
-- **[Maintenance History](/crossplane-providers/maintenance-history/)** - Changelog and updates
+- **[Providers](/crossplane-providers/providers/)** - All providers with versions
+- **[Standards](/crossplane-providers/standards/)** - Platform requirements and conventions
 
 ## Overview
 
