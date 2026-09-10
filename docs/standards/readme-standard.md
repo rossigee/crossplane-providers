@@ -1,3 +1,8 @@
+---
+title: Readme standard
+description: Crossplane provider documentation
+---
+
 # Crossplane Provider README Standard
 
 ## Purpose

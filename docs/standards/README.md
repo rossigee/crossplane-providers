@@ -1,3 +1,8 @@
+---
+title: Standards Index
+description: All normative standards for Crossplane providers in this meta-repo
+---
+
 # Standards Index
 
 All normative standards for providers in this meta-repo. Compliance source of

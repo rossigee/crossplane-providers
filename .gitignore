@@ -1,2 +1,5 @@
 .opencode/
 _site/
+docs/dist/
+node_modules/
+.astro/

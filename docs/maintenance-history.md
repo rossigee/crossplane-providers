@@ -1,3 +1,8 @@
+---
+title: Maintenance history
+description: Crossplane provider documentation
+---
+
 # Maintenance History
 
 Archived incident/fix narratives moved out of `AGENTS.md` during the

@@ -1,3 +1,8 @@
+---
+title: Troubleshooting
+description: Crossplane provider documentation
+---
+
 # Troubleshooting
 
 ## Critical gotchas

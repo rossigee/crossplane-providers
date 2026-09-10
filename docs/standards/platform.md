@@ -1,3 +1,8 @@
+---
+title: Platform
+description: Crossplane provider documentation
+---
+
 # Platform Baseline
 
 Minimum supported platform for all providers in this repository.

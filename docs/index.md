@@ -1,3 +1,8 @@
+---
+title: Provider Index
+description: All Crossplane providers with versions, origins, and standardization status
+---
+
 # Provider Index
 
 This file lists all Crossplane providers in the crossplane-providers repository with their metadata.
