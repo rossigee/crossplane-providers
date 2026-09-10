@@ -2,11 +2,11 @@
 set -euo pipefail
 
 # update-docs.sh - Update provider versions in docs homepage
-# Fetches latest release info from GitHub and updates docs/docs/index.md
+# Fetches latest release info from GitHub and updates docs/index.md
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-INDEX_FILE="$REPO_ROOT/docs/docs/index.md"
+INDEX_FILE="$REPO_ROOT/docs/index.md"
 BACKUP_FILE="$INDEX_FILE.bak"
 
 PROVIDERS=(
@@ -21,6 +21,7 @@ PROVIDERS=(
   "provider-http"
   "provider-keycloak"
   "provider-libvirt"
+  "provider-mailgun"
   "provider-matrix"
   "provider-minio"
   "provider-namecheap"

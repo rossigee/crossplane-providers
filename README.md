@@ -1,81 +1,73 @@
 # Crossplane Providers
 
-This repository contains a collection of Crossplane providers for managing external infrastructure and services through Kubernetes. Each provider enables declarative, GitOps-style management of specific platforms.
+Hand-written native Crossplane providers for managing external infrastructure
+and services through Kubernetes — declarative, GitOps-style, no Terraform.
 
-## Quick Start
+This is a **meta-repo**: each `provider-*` directory is a git submodule
+pointing at its own repository (see `.gitmodules`). File issues and PRs
+**per-provider**; this repo tracks shared standards, tooling, and docs.
+
+## Providers
+
+20 providers. 5 Production (cloudflare, harbor, mailgun, minio, plausible),
+12 In Development, 3 Standard/third-party. All published to `ghcr.io/rossigee/`.
+
+See [docs/index.md](./docs/index.md) for versions, origins, API scope (v1/v2),
+and live standardization status (regenerated via `scripts/audit_standards.sh`).
+
+## Use
+
+**Requires Crossplane core >= v2.5.** See
+[docs/standards/PLATFORM.md](./docs/standards/PLATFORM.md) for the full
+platform baseline (runtime `v2.5.0` via `rossigee/crossplane-runtime` fork,
+CLI `v2.5.0`, Go `1.27.1`).
 
 ```bash
-# Clone and initialize submodules
+# Install a provider (example)
+kubectl crossplane install provider ghcr.io/rossigee/provider-minio:v0.20.0
+```
+
+**v1 vs v2 APIs:** v1 = legacy cluster-scoped (`*.crossplane.io/v1alpha1`).
+v2 = namespaced (`.m.crossplane.io/v1beta1`, `namespace:`-scoped, better
+multi-tenancy). Use v2 for anything new; v1 keeps working where present.
+Per-resource examples live in each provider's `examples/` and `README.md`.
+
+## Develop
+
+```bash
+# Clone with submodules (HTTPS recommended for contributors)
 git clone https://github.com/rossigee/crossplane-providers.git
 cd crossplane-providers
 git submodule update --init --recursive
 
-# Build a provider
+# Per-provider workflow
 cd provider-minio
 make lint reviewable test build
+make publish VERSION=vX.Y.Z PLATFORMS=linux_amd64
 ```
 
-## Repository Structure
+Shared tooling: [rossigee/build](https://github.com/rossigee/build) submodule
+(`rossigee-lint-fixes` branch). It is a small fork of `crossplane/build`:
+adds `govulncheck` to `reviewable`, bumps `golangci-lint` to `2.13.2` with
+vendor-before-generate, and pins CLI `v2.5.0` from the working
+`cli.crossplane.io` URL. Upstream lacks all three. CI templates live in
+[docs/templates/](./docs/templates/).
 
-```
-crossplane-providers/
-├── provider-*/          # Individual provider implementations
-├── docs/                # Documentation and standards
-│   ├── index.md        # Provider directory with status
-│   ├── templates/       # Standardized CI/CD workflow templates
-│   └── standards/      # Coding standards and templates
-└── README.md           # This file
-```
+## Contribute
 
-## Available Providers
+New providers must be **hand-written native Crossplane** — no `upjet`,
+`terraform-plugin-sdk/framework`, `terraform-provider-*`, or Hashicorp
+dependencies (smaller binaries, simpler code, fewer CVEs). Upstream-derived
+exceptions (openstack, libvirt) are grandfathered, not a pattern to copy.
 
-See [docs/index.md](./docs/index.md) for a detailed list of all providers including versions, origins, API support, and standardization status.
+* New provider checklist: `docs/standards/README-STANDARD.md` (README shape),
+  `docs/standards/PLATFORM.md` (version floor), `docs/templates/` (CI).
+* Standards source of truth: `scripts/audit_standards.sh`.
+* Be Participation: see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-## Build System
+## Support
 
-All providers use the [rossigee/build](https://github.com/rossigee/build) submodule for consistent build tooling:
-
-- **make lint** - Lint code with golangci-lint
-- **make reviewable** - Full pre-commit check (generate, lint, test)
-- **make test** - Run unit tests with coverage
-- **make generate** - Generate code and CRDs
-- **make build** - Build the provider binary and local Docker image
-- **make publish** - Build, package, and publish to registry
-
-## Registry
-
-All providers are published to `ghcr.io/rossigee/`:
-
-```bash
-# Example deployment
-kubectl --kubeconfig ~/.kube/CLUSTER-admin.conf patch provider provider-minio \
-  --type='merge' -p='{"spec":{"package":"ghcr.io/rossigee/provider-minio:v0.18.6"}}'
-```
-
-## Contributing
-
-1. Follow the standardized build system (rossigee/build)
-2. Ensure CI/CD uses the `docs/templates/` workflows
-3. Follow standards in `docs/standards/`
-4. Publish to `ghcr.io/rossigee/` registry
-
-## Standards
-
-- All providers use Go 1.27.1
-- Standardized CI/CD with GitHub Actions
-- Primary registry: `ghcr.io/rossigee`
-- Build submodule: `rossigee/build`
-- **NO terraform/upjet dependencies**: Providers are hand-written Crossplane controllers. We explicitly avoid terraform-provider scaffolding and code generation to achieve smaller binary size, simpler implementations, and reduced attack surface.
-
-For detailed standardization status, see [docs/index.md](./docs/index.md).
-
-## Architectural Decision: No Terraform Dependencies
-
-All providers in this repository are hand-written native Crossplane controllers. We do **not** use `upjet`, terraform provider SDKs, or terraform plugin frameworks because:
-
-1. **Smaller binaries**: Hand-written controllers are 5-10x smaller than generated terraform-based providers
-2. **Simpler code**: Direct API clients are easier to understand, debug, and maintain than generated scaffolding
-3. **Reduced attack surface**: Fewer dependencies = fewer potential vulnerabilities
-4. **Better Kubernetes integration**: Native Crossplane APIs provide better resource management and status handling
-
-Any provider contributions must be native Crossplane implementations, not terraform-generated wrappers.
+* Issues: per-provider GitHub repo (not here).
+* Docs site: `https://rossigee.github.io/crossplane-providers/` (from `docs/`).
+* Registry: `ghcr.io/rossigee/provider-*:tag` (fully qualified, no default registry).
+* License: [Apache-2.0](./LICENSE).

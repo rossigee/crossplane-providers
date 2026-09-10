@@ -38,7 +38,7 @@ Bullet list of key capabilities:
 
 ### 5. Getting Started
 #### Prerequisites
-- Kubernetes with Crossplane installed
+- Kubernetes with Crossplane `>= v2.5` (see `PLATFORM.md`)
 - Target service credentials
 
 #### Installation

@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - 'docs/**'
-      - 'mkdocs.yml'
+      - '.github/workflows/docs.yml'
 
 permissions:
   contents: read
@@ -37,7 +37,7 @@ jobs:
           pip install -r docs/requirements.txt
 
       - name: Build documentation
-        run: mkdocs build
+        run: mkdocs build -f docs/mkdocs.yml
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -45,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v6
         with:
-          path: docs/site
+          path: site
 
       - name: Deploy to GitHub Pages
         id: deployment

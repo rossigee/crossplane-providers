@@ -3,13 +3,13 @@ site_description: A collection of lean, focused Crossplane providers designed fo
 site_author: Ross Golder
 site_url: https://rossigee.github.io/crossplane-providers/
 
-docs_dir: docs
+docs_dir: .
 
 nav:
   - Home: index.md
-  - Architecture:
-      - "Introspection and Drift Detection": introspection_and_drift_detection.md
-      - "Provider Vault Migration": provider_vault_migration.md
+  - Platform Baseline: standards/PLATFORM.md
+  - Troubleshooting: troubleshooting.md
+  - Maintenance History: maintenance-history.md
 
 theme:
   name: material

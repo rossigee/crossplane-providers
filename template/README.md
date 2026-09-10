@@ -1,5 +1,10 @@
 # Provider README Template
 
+> Canonical standard: [docs/standards/README-STANDARD.md](../docs/standards/README-STANDARD.md)
+> (section order + badges). This file is the quick-start skeleton; where they
+> differ, the standards doc wins. Platform floor (Crossplane `>= v2.5`):
+> [docs/standards/PLATFORM.md](../docs/standards/PLATFORM.md).
+
 ## Standard Header Structure
 
 ```
