@@ -3,7 +3,7 @@ site_description: A collection of lean, focused Crossplane providers designed fo
 site_author: Ross Golder
 site_url: https://rossigee.github.io/crossplane-providers/
 
-# docs_dir auto-discovered from config location (docs/)
+docs_dir: .
 
 nav:
   - Home: index.md
