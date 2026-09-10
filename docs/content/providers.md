@@ -32,6 +32,36 @@ A complete list of all Crossplane providers in this repository.
 
 ## Status Definitions
 
-- **Production**: Stable, ready for production use
-- **In Dev**: Actively developed, may have breaking changes
-- **Community**: Forked from crossplane-contrib, maintained by rossigee
+### Production
+
+A provider is classified as **Production** when all of the following criteria are met:
+
+1. **Has been deployed and used successfully in a production environment** - Real workloads are running without issues
+2. **API is stable** - No breaking changes in recent releases (v1.0+ or 3+ stable releases)
+3. **Comprehensive CRD coverage** - Main resources are implemented and tested
+4. **Community adoption** - In use by users beyond the maintainer
+5. **Documentation complete** - README, examples, and troubleshooting docs are in place
+
+### In Dev
+
+A provider is classified as **In Dev** when any of the following apply:
+
+1. **Under active development** - New features being added, API may evolve
+2. **Limited production testing** - Not yet proven in production or limited adoption
+3. **Pre-v1.0** - Version indicates API may still have breaking changes
+4. **Partial coverage** - Core resources implemented but not comprehensive
+5. **Development ongoing** - Regular updates and improvements being made
+
+### Community
+
+A provider is classified as **Community** when it meets these criteria:
+
+1. **Forked from crossplane-contrib** - Originally from third-party, maintained by rossigee
+2. **External origin** - Not originally developed by rossigee
+3. **Maintained for compatibility** - Kept up-to-date with Crossplane releases
+
+## Criteria Rationale
+
+- **Production status** requires real-world deployment because theoretical completeness doesn't guarantee operational reliability
+- **In Dev** is the default state for new providers until proven in production
+- **Community** status acknowledges providers forked from external sources while still being actively maintained
