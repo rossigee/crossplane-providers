@@ -6,6 +6,7 @@ publishDir = 'public'
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+      param = true
 
 [taxonomies]
   tag = 'tags'

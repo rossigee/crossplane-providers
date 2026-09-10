@@ -32,6 +32,20 @@ jobs:
         with:
           hugo-version: '0.128.0'
 
+      - name: Setup Pandoc
+        uses: pandoc/setup-pandoc@v1
+        with:
+          pandoc-version: '3.1.12'
+
+      - name: Convert markdown tables to HTML
+        run: |
+          # Extract and convert providers table
+          sed -n '30,52p' docs/content/_index.md > /tmp/table.md
+          pandoc -t html /tmp/table.md > /tmp/table.html
+          # Replace markdown table with HTML in place
+          sed -i '30,52d' docs/content/_index.md
+          sed -i '29r /tmp/table.html' docs/content/_index.md
+
       - name: Build documentation
         run: |
           hugo --source docs

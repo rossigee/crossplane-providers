@@ -27,29 +27,276 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 > pre-commit v6.0.0 / hadolint v2.12.0). If this banner is stale, re-run
 > `scripts/audit_standards.sh` and `scripts/update-docs.sh` to re-verify.
 
-| Provider | Latest Version | Origin | Go Version | Runtime | v1 API | v2 API | Build | Upjet/TF | Status | Notes |
-|----------|---------------|--------|------------|--------|--------|-------|----------|--------|-------|
-| [provider-backblaze](provider-backblaze) | v0.14.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Backblaze B2 storage (buckets, keys, policies) |
-| [provider-btcpay](provider-btcpay) | v0.6.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | BTCPay Server (stores, invoices, webhooks) |
-| [provider-cloudflare](provider-cloudflare) | v0.16.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Cloudflare DNS, security, WAF, firewall |
-| [provider-discord](provider-discord) | v0.16.0 | rossigee | 1.27.1 | v2.5.0 | Yes | No | Yes | No | In Dev | Discord server management |
-| [provider-docker](provider-docker) | v0.5.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Docker containers and compose stacks |
-| [provider-gitea](provider-gitea) | v0.12.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Gitea repository management |
-| [provider-harbor](provider-harbor) | v0.19.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Harbor container registry |
-| [provider-hostinger](provider-hostinger) | v0.2.2 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Hostinger VPS and cloud services |
-| [provider-http](provider-http) | v1.4.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Generic HTTP request resources |
-| [provider-keycloak](provider-keycloak) | v0.4.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Keycloak identity management |
-| [provider-libvirt](provider-libvirt) | v0.11.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | In Dev | KVM/libvirt virtual machines |
-| [provider-mailgun](provider-mailgun) | v0.21.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Mailgun email service |
-| [provider-matrix](provider-matrix) | v0.5.0 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
-| [provider-minio](provider-minio) | v0.21.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
-| [provider-namecheap](provider-namecheap) | v0.7.1 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
-| [provider-openstack](provider-openstack) | v1.2.0 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
-| [provider-plausible](provider-plausible) | v0.4.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Plausible Analytics |
-| [provider-rabbitmq](provider-rabbitmq) | v0.5.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
-| [provider-signoz](provider-signoz) | v0.6.1 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
-| [provider-vault](provider-vault) | v0.3.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | HashiCorp Vault secrets management |
-
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Latest Version</th>
+<th>Origin</th>
+<th>Go Version</th>
+<th>Runtime</th>
+<th>v1 API</th>
+<th>v2 API</th>
+<th>Build</th>
+<th>Upjet/TF</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="provider-backblaze">provider-backblaze</a></td>
+<td>v0.14.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-btcpay">provider-btcpay</a></td>
+<td>v0.6.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-cloudflare">provider-cloudflare</a></td>
+<td>v0.16.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><a href="provider-discord">provider-discord</a></td>
+<td>v0.16.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-docker">provider-docker</a></td>
+<td>v0.5.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-gitea">provider-gitea</a></td>
+<td>v0.12.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-harbor">provider-harbor</a></td>
+<td>v0.19.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><a href="provider-hostinger">provider-hostinger</a></td>
+<td>v0.2.2</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-http">provider-http</a></td>
+<td>v1.4.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td><a href="provider-keycloak">provider-keycloak</a></td>
+<td>v0.4.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-libvirt">provider-libvirt</a></td>
+<td>v0.11.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Upjet</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-mailgun">provider-mailgun</a></td>
+<td>v0.21.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><a href="provider-matrix">provider-matrix</a></td>
+<td>v0.5.0</td>
+<td>crossplane-contrib</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td><a href="provider-minio">provider-minio</a></td>
+<td>v0.21.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><a href="provider-namecheap">provider-namecheap</a></td>
+<td>v0.7.1</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td><a href="provider-openstack">provider-openstack</a></td>
+<td>v1.2.0</td>
+<td>crossplane-contrib</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Upjet</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td><a href="provider-plausible">provider-plausible</a></td>
+<td>v0.4.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Production</td>
+</tr>
+<tr>
+<td><a href="provider-rabbitmq">provider-rabbitmq</a></td>
+<td>v0.5.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-signoz">provider-signoz</a></td>
+<td>v0.6.1</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+<tr>
+<td><a href="provider-vault">provider-vault</a></td>
+<td>v0.3.0</td>
+<td>rossigee</td>
+<td>1.27.1</td>
+<td>v2.5.0</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>In Dev</td>
+</tr>
+</tbody>
+</table>
 ## Summary Statistics
 
 - **Total Providers**: 20
