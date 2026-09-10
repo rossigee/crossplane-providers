@@ -1,7 +1,11 @@
 baseURL = 'https://rossigee.github.io/crossplane-providers/'
 title = 'Crossplane Providers'
-theme = []
 publishDir = 'public'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [taxonomies]
   tag = 'tags'
