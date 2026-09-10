@@ -21,10 +21,10 @@ A complete list of all Crossplane providers in this repository.
 | [provider-keycloak](https://github.com/rossigee/provider-keycloak) | v0.4.0 | In Dev | Keycloak identity management |
 | [provider-libvirt](https://github.com/rossigee/provider-libvirt) | v0.11.0 | In Dev | KVM/libvirt virtual machines |
 | [provider-mailgun](https://github.com/rossigee/provider-mailgun) | v0.21.0 | Production | Mailgun email service |
-| [provider-matrix](https://github.com/crossplane-contrib/provider-matrix) | v0.5.0 | Community | Matrix homeserver management |
+| [provider-matrix](https://github.com/crossplane-contrib/provider-matrix) | v0.5.0 | In Dev | Matrix homeserver management |
 | [provider-minio](https://github.com/rossigee/provider-minio) | v0.21.0 | Production | MinIO object storage |
-| [provider-namecheap](https://github.com/rossigee/provider-namecheap) | v0.7.1 | Community | Namecheap domains and DNS |
-| [provider-openstack](https://github.com/crossplane-contrib/provider-openstack) | v1.2.0 | Community | OpenStack cloud resources |
+| [provider-namecheap](https://github.com/rossigee/provider-namecheap) | v0.7.1 | In Dev | Namecheap domains and DNS |
+| [provider-openstack](https://github.com/crossplane-contrib/provider-openstack) | v1.2.0 | In Dev | OpenStack cloud resources |
 | [provider-plausible](https://github.com/rossigee/provider-plausible) | v0.4.0 | Production | Plausible Analytics |
 | [provider-rabbitmq](https://github.com/rossigee/provider-rabbitmq) | v0.5.0 | In Dev | RabbitMQ management |
 | [provider-signoz](https://github.com/rossigee/provider-signoz) | v0.6.1 | In Dev | SigNoz observability platform |
@@ -50,17 +50,3 @@ A provider is classified as **In Dev** when any of the following apply:
 2. **Limited production testing** - Not yet proven in production or limited adoption
 3. **Pre-v1.0 releases** - API may still have breaking changes between releases
 4. **Partial coverage** - Core resources implemented but not comprehensive
-
-### Community
-
-A provider is classified as **Community** when it meets these criteria:
-
-1. **Forked from crossplane-contrib** - Originally from third-party, maintained by rossigee
-2. **External origin** - Not originally developed by rossigee
-3. **Maintained for compatibility** - Kept up-to-date with Crossplane releases
-
-## Criteria Rationale
-
-- **Production status** requires real-world deployment because theoretical completeness doesn't guarantee operational reliability
-- **In Dev** is the default state for new providers until proven in production
-- **Community** status acknowledges providers forked from external sources while still being actively maintained
