@@ -1,13 +1,11 @@
 ---
 title: Providers
-description: All Crossplane providers with versions and status
+description: All Crossplane providers
 ---
 
 # Providers
 
 A complete list of all Crossplane providers in this repository.
-
-All providers are currently classified as **In Dev** as we cannot verify the production deployment criteria for any of them.
 
 | Provider | Version | Description |
 |----------|---------|-------------|
@@ -31,14 +29,3 @@ All providers are currently classified as **In Dev** as we cannot verify the pro
 | [provider-rabbitmq](https://github.com/rossigee/provider-rabbitmq) | v0.5.0 | RabbitMQ management |
 | [provider-signoz](https://github.com/rossigee/provider-signoz) | v0.6.1 | SigNoz observability platform |
 | [provider-vault](https://github.com/rossigee/provider-vault) | v0.3.0 | HashiCorp Vault secrets management |
-
-## Status Definitions
-
-### In Dev
-
-A provider is classified as **In Dev** when any of the following apply:
-
-1. **Under active development** - New features being added, API may evolve
-2. **Limited production testing** - Not yet proven in production or limited adoption
-3. **Pre-v1.0 releases** - API may still have breaking changes between releases
-4. **Partial coverage** - Core resources implemented but not comprehensive
