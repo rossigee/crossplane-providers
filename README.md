@@ -24,7 +24,7 @@ CLI `v2.5.0`, Go `1.27.1`).
 
 ```bash
 # Install a provider (example)
-kubectl crossplane install provider ghcr.io/rossigee/provider-minio:v0.20.0
+kubectl crossplane install provider ghcr.io/rossigee/provider-minio:v0.21.0
 ```
 
 **v1 vs v2 APIs:** v1 = legacy cluster-scoped (`*.crossplane.io/v1alpha1`).

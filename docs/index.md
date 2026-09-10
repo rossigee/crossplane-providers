@@ -15,7 +15,7 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 
 ## Providers
 
-> ✅ **Refreshed 2026-09-08**: `Latest Version` column refreshed from
+> ✅ **Refreshed 2026-09-10**: `Latest Version` column refreshed from
 > `git -C provider-*/ describe --tags --abbrev=0` (ground truth: Go 1.27.1,
 > golangci-lint 2.13.2, build `rossigee-lint-fixes @ e5bf20a`, runtime
 > `crossplane-runtime/v2 v2.5.0` via `rossigee/crossplane-runtime` fork,
@@ -24,26 +24,26 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 
 | Provider | Latest Version | Origin | Go Version | Runtime | v1 API | v2 API | Build | Upjet/TF | Status | Notes |
 |----------|---------------|--------|------------|--------|--------|-------|----------|--------|-------|
-| [provider-backblaze](provider-backblaze) | v0.13.6 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Backblaze B2 storage (buckets, keys, policies) |
-| [provider-btcpay](provider-btcpay) | v0.4.5 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | BTCPay Server (stores, invoices, webhooks) |
-| [provider-cloudflare](provider-cloudflare) | v0.14.15 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Cloudflare DNS, security, WAF, firewall |
-| [provider-discord](provider-discord) | v0.14.16 | rossigee | 1.27.1 | v2.5.0 | Yes | No | Yes | No | In Dev | Discord server management |
-| [provider-docker](provider-docker) | v0.3.13 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Docker containers and compose stacks |
-| [provider-gitea](provider-gitea) | v0.10.33 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Gitea repository management |
-| [provider-harbor](provider-harbor) | v0.17.5 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Harbor container registry |
-| [provider-hostinger](provider-hostinger) | v0.1.11 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Hostinger VPS and cloud services |
-| [provider-http](provider-http) | v1.2.3 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Generic HTTP request resources |
-| [provider-keycloak](provider-keycloak) | v0.2.61 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Keycloak identity management |
-| [provider-libvirt](provider-libvirt) | v0.9.45 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | In Dev | KVM/libvirt virtual machines |
-| [provider-mailgun](provider-mailgun) | v0.20.5 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Mailgun email service |
-| [provider-matrix](provider-matrix) | v0.3.3 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
-| [provider-minio](provider-minio) | v0.20.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
-| [provider-namecheap](provider-namecheap) | v0.5.13 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
-| [provider-openstack](provider-openstack) | v1.0.0 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
-| [provider-plausible](provider-plausible) | v0.2.4 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Plausible Analytics |
-| [provider-rabbitmq](provider-rabbitmq) | v0.2.11 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
-| [provider-signoz](provider-signoz) | v0.4.17 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
-| [provider-vault](provider-vault) | v0.2.43 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | No | No | In Dev | HashiCorp Vault secrets management |
+| [provider-backblaze](provider-backblaze) | v0.14.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Backblaze B2 storage (buckets, keys, policies) |
+| [provider-btcpay](provider-btcpay) | v0.6.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | BTCPay Server (stores, invoices, webhooks) |
+| [provider-cloudflare](provider-cloudflare) | v0.16.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Cloudflare DNS, security, WAF, firewall |
+| [provider-discord](provider-discord) | v0.16.0 | rossigee | 1.27.1 | v2.5.0 | Yes | No | Yes | No | In Dev | Discord server management |
+| [provider-docker](provider-docker) | v0.5.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Docker containers and compose stacks |
+| [provider-gitea](provider-gitea) | v0.12.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | Gitea repository management |
+| [provider-harbor](provider-harbor) | v0.19.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Harbor container registry |
+| [provider-hostinger](provider-hostinger) | v0.2.2 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Hostinger VPS and cloud services |
+| [provider-http](provider-http) | v1.4.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Generic HTTP request resources |
+| [provider-keycloak](provider-keycloak) | v0.4.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | Keycloak identity management |
+| [provider-libvirt](provider-libvirt) | v0.11.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | In Dev | KVM/libvirt virtual machines |
+| [provider-mailgun](provider-mailgun) | v0.21.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Mailgun email service |
+| [provider-matrix](provider-matrix) | v0.5.0 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | Standard | Matrix homeserver management |
+| [provider-minio](provider-minio) | v0.21.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | MinIO object storage (VSHN-maintained) |
+| [provider-namecheap](provider-namecheap) | v0.7.1 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Standard | Namecheap domains and DNS |
+| [provider-openstack](provider-openstack) | v1.2.0 | crossplane-contrib | 1.27.1 | v2.5.0 | Yes | Yes | Yes | Upjet | Standard | OpenStack cloud resources |
+| [provider-plausible](provider-plausible) | v0.4.0 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | Production | Plausible Analytics |
+| [provider-rabbitmq](provider-rabbitmq) | v0.5.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | RabbitMQ management |
+| [provider-signoz](provider-signoz) | v0.6.1 | rossigee | 1.27.1 | v2.5.0 | No | Yes | Yes | No | In Dev | SigNoz observability platform |
+| [provider-vault](provider-vault) | v0.3.0 | rossigee | 1.27.1 | v2.5.0 | Yes | Yes | Yes | No | In Dev | HashiCorp Vault secrets management |
 
 ## Summary Statistics
 
@@ -347,10 +347,10 @@ Go 1.27.1 / golangci-lint 2.13.2 / build e5bf20a).
 All rossigee providers are published to `ghcr.io/rossigee/`:
 
 ```bash
-# Examples (2026-09-08)
-ghcr.io/rossigee/provider-minio:v0.20.0
-ghcr.io/rossigee/provider-mailgun:v0.20.5
-ghcr.io/rossigee/provider-harbor:v0.17.5
+# Examples (2026-09-10)
+ghcr.io/rossigee/provider-minio:v0.21.0
+ghcr.io/rossigee/provider-mailgun:v0.21.0
+ghcr.io/rossigee/provider-harbor:v0.19.0
 ```
 
 ## Directory Structure
@@ -377,4 +377,4 @@ crossplane-providers/
 
 ---
 
-*Last updated: 2026-09-08* (audit: `scripts/audit_standards.sh` ground-truth scan of go.mod, Makefile, .gitmodules, build/ submodule commits, .github/workflows, package/, Dockerfile, README.md across all 20 providers; Go 1.27.1 / golangci-lint 2.13.2 / build e5bf20a / runtime v2.5.0 / pre-commit v6.0.0 / hadolint v2.12.0; `Latest Version` refreshed via `git -C provider-*/ describe --tags --abbrev=0`)
+*Last updated: 2026-09-10* (audit: `scripts/audit_standards.sh` ground-truth scan of go.mod, Makefile, .gitmodules, build/ submodule commits, .github/workflows, package/, Dockerfile, README.md across all 20 providers; Go 1.27.1 / golangci-lint 2.13.2 / build e5bf20a / runtime v2.5.0 / pre-commit v6.0.0 / hadolint v2.12.0; `Latest Version` refreshed via `git -C provider-*/ describe --tags --abbrev=0`)
