@@ -48,9 +48,8 @@ A provider is classified as **In Dev** when any of the following apply:
 
 1. **Under active development** - New features being added, API may evolve
 2. **Limited production testing** - Not yet proven in production or limited adoption
-3. **Pre-v1.0** - Version indicates API may still have breaking changes
+3. **Pre-v1.0 releases** - API may still have breaking changes between releases
 4. **Partial coverage** - Core resources implemented but not comprehensive
-5. **Development ongoing** - Regular updates and improvements being made
 
 ### Community
 
