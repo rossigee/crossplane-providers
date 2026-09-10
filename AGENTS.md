@@ -45,7 +45,7 @@ make publish VERSION=vX.Y.Z PLATFORMS=linux_amd64   # full publish (recommended)
 make xpkg.build      # Crossplane package with embedded runtime
 ```
 
-Prerequisites and version floor: [docs/standards/PLATFORM.md](./docs/standards/PLATFORM.md)
+Prerequisites and version floor: [docs/standards/platform.md](./docs/standards/platform.md)
 (Crossplane core `>= v2.5`, runtime `v2.5.0` via `rossigee/crossplane-runtime`
 fork, CLI `v2.5.0`, Go `1.27.1`). Build submodule must be
 `https://github.com/rossigee/build` (`rossigee-lint-fixes`); upstream
@@ -70,8 +70,9 @@ fork, CLI `v2.5.0`, Go `1.27.1`). Build submodule must be
 
 ## Standards
 
-* Provider README shape: `docs/standards/README-STANDARD.md`.
-* Platform floor: `docs/standards/PLATFORM.md`.
+* Index of all norms + enforcement: `docs/standards/README.md`.
+* Provider README shape: `docs/standards/readme-standard.md`.
+* Platform floor: `docs/standards/platform.md`.
 * CI templates: `docs/templates/` (CI validates, Release publishes).
 * Compliance source of truth: `scripts/audit_standards.sh`.
 * History moved to: `docs/maintenance-history.md`.

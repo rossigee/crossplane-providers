@@ -1,6 +1,8 @@
 # Crossplane Provider CI/CD Templates
 
 **Version 2026-09-08** - Standardized GitHub Actions workflows + .golangci.yml for all Crossplane providers.
+Part of the [standards](../standards/README.md); platform floor (Crossplane
+`>= v2.5`): [platform.md](../standards/platform.md).
 
 All providers now use:
 - Go 1.27.1

@@ -22,7 +22,7 @@ controller-runtime / client-go compatibility. Running these providers against
 Crossplane cores `< v2.5` is unsupported. Legacy cluster-scoped (v1) APIs keep
 working where present, but namespaced `.m.` APIs assume v2.5 behavior.
 
-Related upstream work (all five, inline as decided):
+Related upstream work:
 
 1. [crossplane-runtime#1057](https://github.com/crossplane/crossplane-runtime/issues/1057)
    — `APIRecorder uses deprecated record.EventRecorder and drops filterFns`.

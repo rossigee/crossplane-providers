@@ -12,7 +12,7 @@
 #   - build submodule:       github.com/rossigee/build @ rossigee-lint-fixes @ e5bf20a
 #   - runtime:               crossplane-runtime/v2 v2.5.0 (rossigee fork)
 #   - crossplane CLI:        v2.5.0 from cli.crossplane.io
-#   - crossplane core floor: >= v2.5 (see docs/standards/PLATFORM.md)
+#   - crossplane core floor: >= v2.5 (see docs/standards/platform.md)
 #   - pre-commit:            v6.0.0, hadolint v2.12.0
 #   - workflows:             ci.yml, release.yml, security.yml, auto-merge.yml,
 #                             .github/dependabot.yml
@@ -186,7 +186,7 @@ case "$FORMAT" in
         done
         ;;
     text|*)
-        echo "Standards Audit — canonical: Go $STD_GO_VERSION, golangci-lint $STD_LINT_VERSION, build@$STD_BUILD_BRANCH, runtime $STD_RUNTIME_VERSION ($STD_RUNTIME_FORK), CLI $STD_CLI_VERSION, core >= v2.5 (docs/standards/PLATFORM.md)"
+        echo "Standards Audit — canonical: Go $STD_GO_VERSION, golangci-lint $STD_LINT_VERSION, build@$STD_BUILD_BRANCH, runtime $STD_RUNTIME_VERSION ($STD_RUNTIME_FORK), CLI $STD_CLI_VERSION, core >= v2.5 (docs/standards/platform.md)"
         echo "======================================================================"
         for row in "${ROWS[@]}"; do
             IFS='|' read -r name go_v mk_go mk_lint b_url b_branch b_commit ci rel sec am dep ci_go pkg ep oci readme rt_v rt_fork cli_v <<< "$row"

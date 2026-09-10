@@ -1,85 +1,115 @@
 # Provider README Template
 
-> Canonical standard: [docs/standards/README-STANDARD.md](../docs/standards/README-STANDARD.md)
-> (section order + badges). This file is the quick-start skeleton; where they
-> differ, the standards doc wins. Platform floor (Crossplane `>= v2.5`):
-> [docs/standards/PLATFORM.md](../docs/standards/PLATFORM.md).
-
-## Standard Header Structure
-
-```
-# Provider [Name]
-
-[![Build](https://github.com/rossigee/provider-NAME/actions/workflows/ci.yml/badge.svg)](https://github.com/rossigee/provider-NAME/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-Brief description of what this provider does and what Crossplane version it supports.
-```
-
-## Required Sections
-
-1. **Title** - `# Provider [Name]`
-2. **Badges** - CI build status + License
-3. **Overview** - One paragraph describing the provider
-4. **Features** - Bulleted list of key capabilities
-5. **Quick Start** - Installation steps
-6. **Configuration** - Provider config setup
-7. **Examples** - Sample resource manifests
-8. **Development** - Build/test instructions
-
-## Example Sections
+> Skeleton implementing the canonical
+> [README standard](../docs/standards/readme-standard.md) — section order,
+> badges, and registry rules. Where they differ, the standards doc wins.
+> Platform floor (Crossplane `>= v2.5`):
+> [docs/standards/platform.md](../docs/standards/platform.md).
+> Delete this notice and replace every `provider-xxx` / `[bracketed]`
+> placeholder when scaffolding a new provider.
 
 ```markdown
-## Overview
+# provider-xxx
 
-[Provider-name] is a [Crossplane](https://crossplane.io/) provider that enables
-infrastructure management for [external-service] through Kubernetes custom resources.
+[![CI](https://img.shields.io/github/actions/workflow/status/rossigee/provider-xxx/ci.yml?branch=master)][build]
+[![Version](https://img.shields.io/github/v/release/rossigee/provider-xxx)][releases]
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+[build]: https://github.com/rossigee/provider-xxx/actions/workflows/ci.yml
+[releases]: https://github.com/rossigee/provider-xxx/releases
+
+[One paragraph: what this provider manages, via which external service API.]
+
+## Container Registry
+
+- **Primary**: `ghcr.io/rossigee/provider-xxx:vX.Y.Z`
 
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- [Resource types managed]
+- [Key integrations]
 
-## Quick Start
+## Getting Started
 
 ### Prerequisites
 
-- Kubernetes cluster with Crossplane installed
+- Kubernetes cluster with Crossplane `>= v2.5`
 - Credentials for [external-service]
 
 ### Installation
 
 ```bash
-# Install provider
-kubectl apply -f provider.yaml
+kubectl crossplane install provider ghcr.io/rossigee/provider-xxx:vX.Y.Z
 ```
 
-## Configuration
+### Configuration
 
-Create a ProviderConfig to configure credentials.
+Create a secret with your credentials:
 
-## Examples
+```bash
+kubectl create secret generic xxx-credentials \
+  --from-literal=KEY=value \
+  -n crossplane-system
+```
 
-Example resource manifests in `examples/` directory.
+Then a ProviderConfig referencing it (see `examples/`).
+
+## Usage
+
+```yaml
+# Minimal managed-resource example (v2 namespaced API shown)
+apiVersion: xxx.m.crossplane.io/v1beta1
+kind: Xxx
+metadata:
+  name: example
+  namespace: default
+spec:
+  forProvider:
+    name: example
+  providerConfigRef:
+    name: default
+  deletionPolicy: Delete
+```
+
+Full examples live in `examples/`.
+
+## Resource Types
+
+| Resource | API version | Description |
+|----------|-------------|-------------|
+| Xxx | xxx.m.crossplane.io/v1beta1 | [What it manages] |
 
 ## Development
 
 ```bash
-# Build
-make build
-
-# Test
-make test
+make generate   # CRDs
+make build      # binary + local image
+make test       # unit tests
+make lint       # golangci-lint via rossigee/build
 ```
+
+## Contributing
+
+Issues and PRs go to `github.com/rossigee/provider-xxx` (not the meta-repo).
+Build and CI follow the shared standards in `docs/`.
 
 ## License
 
-Apache 2.0
+provider-xxx is under the Apache 2.0 license.
 ```
+
+## After scaffolding
+
+1. Fill in every placeholder; pin the real published tag in Container
+   Registry + Installation (they must match).
+2. Verify the 6 machine-audited headings exist verbatim: `Container
+   Registry`, `Getting Started`, `Resource Types`, `Development`,
+   `Contributing`, `License` (`scripts/audit_standards.sh` checks these).
+3. Match the `licenses` OCI label in the Dockerfile to the License section.
+4. Delete this "After scaffolding" section.
 
 ## Naming Conventions
 
-- Title: `# Provider [Name]` (e.g., "Provider Vault", not "provider-vault")
-- Badge link: `rossigee/provider-NAME` (lowercase, hyphens)
-- Registry: `ghcr.io/rossigee/provider-NAME`
+- Title: `# provider-xxx` (lowercase repo name, e.g. `# provider-vault`)
+- Badge links: `rossigee/provider-xxx` (lowercase, hyphens)
+- Registry: `ghcr.io/rossigee/provider-xxx:vX.Y.Z` (fully qualified)

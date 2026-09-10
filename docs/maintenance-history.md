@@ -74,7 +74,7 @@ merging upstream security fixes into the fork (`events-recorder-fixes`) and
 bumping all five; 2026-09-08 unified all 20 on `v2.5.0` via the fork. The fork
 remains the org baseline until upstream merges
 [crossplane-runtime#1052](https://github.com/crossplane/crossplane-runtime/pull/1052);
-see `docs/standards/PLATFORM.md`.
+see `docs/standards/platform.md`.
 
 ## provider-openstack runtime v1/v2 conflict (diagnosed, not fixed)
 

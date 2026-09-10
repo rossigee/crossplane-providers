@@ -51,9 +51,9 @@ kubectl describe validatingwebhookconfigurations | grep provider-name
 
 ## Provider README requirements
 
-Per `docs/standards/README-STANDARD.md`: Title+Badges, Overview, Container
+Per `docs/standards/readme-standard.md`: Title+Badges, Overview, Container
 Registry (`ghcr.io/rossigee/...`), Features, Getting Started (prereqs,
 install, ProviderConfig), Usage, Resource Types, Development, Contributing,
 License. State exact Crossplane floor (`>= v2.5`, see
-`docs/standards/PLATFORM.md`) and document both v1/v2 API variants where both
+`docs/standards/platform.md`) and document both v1/v2 API variants where both
 exist.

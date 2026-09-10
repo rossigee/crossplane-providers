@@ -1,3 +1,8 @@
+# Standard .gitignore for new Crossplane providers in rossigee/crossplane-providers.
+# Copy this file to the new provider repo root as `.gitignore` when scaffolding
+# (see CONTRIBUTING.md new-provider checklist). It is intentionally NOT the
+# meta-repo's own .gitignore (which only excludes tooling dirs).
+#
 # Binaries for programs and plugins
 *.exe
 *.exe~

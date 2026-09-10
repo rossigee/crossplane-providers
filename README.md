@@ -18,7 +18,7 @@ and live standardization status (regenerated via `scripts/audit_standards.sh`).
 ## Use
 
 **Requires Crossplane core >= v2.5.** See
-[docs/standards/PLATFORM.md](./docs/standards/PLATFORM.md) for the full
+[docs/standards/platform.md](./docs/standards/platform.md) for the full
 platform baseline (runtime `v2.5.0` via `rossigee/crossplane-runtime` fork,
 CLI `v2.5.0`, Go `1.27.1`).
 
@@ -60,10 +60,10 @@ New providers must be **hand-written native Crossplane** — no `upjet`,
 dependencies (smaller binaries, simpler code, fewer CVEs). Upstream-derived
 exceptions (openstack, libvirt) are grandfathered, not a pattern to copy.
 
-* New provider checklist: `docs/standards/README-STANDARD.md` (README shape),
-  `docs/standards/PLATFORM.md` (version floor), `docs/templates/` (CI).
+* New provider checklist: `docs/standards/readme-standard.md` (README shape),
+  `docs/standards/platform.md` (version floor), `docs/templates/` (CI).
 * Standards source of truth: `scripts/audit_standards.sh`.
-* Be Participation: see [CONTRIBUTING.md](./CONTRIBUTING.md).
+* Participation: see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Support
 

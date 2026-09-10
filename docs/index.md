@@ -56,9 +56,12 @@ This file lists all Crossplane providers in the crossplane-providers repository 
 ## Standardization Status
 
 **Ground truth**: this section is generated from `scripts/audit_standards.sh`, which
-inspects each provider's `go.mod`, `Makefile`, `.gitmodules`, `build/` submodule
-commit, `.github/workflows/`, `package/`, Dockerfile, and `README.md` directly —
-it does not rely on hand-maintained tables. Re-run it any time to refresh these
+inspects each provider's `go.mod` (including `crossplane-runtime/v2` version
+and fork `replace`), `Makefile`, `.gitmodules`, `build/` submodule
+commit (including `CROSSPLANE_CLI_VERSION`), `.github/workflows/`, `package/`,
+Dockerfile, and `README.md` directly —
+it does not rely on hand-maintained tables. Platform floor (Crossplane core
+`>= v2.5`): `standards/platform.md`. Re-run it any time to refresh these
 numbers:
 
 ```bash
@@ -73,6 +76,10 @@ numbers:
 | Go Version (go.mod) | ✅ 100% | 20/20 | All on 1.27.1 |
 | Makefile `GO_REQUIRED_VERSION` | ℹ️ 95% | 19/20 | provider-libvirt: unset. Not a functional gap — this variable is not referenced anywhere in the current `rossigee/build` submodule, so it's dead configuration for all 20 providers |
 | golangci-lint version | ✅ 100% | 20/20 | All pinned to 2.13.2 |
+| crossplane-runtime version | ✅ 100% | 20/20 | All on `v2.5.0` — audited from `go.mod` since 2026-09-10; see `standards/platform.md` |
+| crossplane-runtime fork | ✅ 100% | 20/20 | All via `rossigee/crossplane-runtime` `replace` (events.k8s.io/v1 fix, upstream [#1052](https://github.com/crossplane/crossplane-runtime/pull/1052)) |
+| crossplane CLI version | ✅ 100% | 20/20 | All on `v2.5.0` via `rossigee/build` `k8s_tools.mk` — audited since 2026-09-10 |
+| Crossplane core floor | ✅ 100% | 20/20 | `>= v2.5` for all providers — see `standards/platform.md` |
 | Build submodule (URL+branch+commit) | ✅ 100% | 20/20 | All on `rossigee-lint-fixes @ e5bf20a` — refreshed 2026-09-08 (Go 1.27.1 / golangci-lint 2.13.2) |
 | Registry | ✅ 100% | 20/20 | All use ghcr.io/rossigee |
 | v1beta1 API controllers | ✅ 100% | 20/20 | provider-discord fixed 2026-08-10 — types existed but had no controllers wired up (see note below); all 9 resources now have namespaced v1beta1 controllers alongside the existing cluster-scoped v1alpha1 ones |
@@ -151,7 +158,7 @@ item below.
 
 Neither of these was tracked before this audit; both were large gaps in
 practice despite `docs/templates/OCI-LABELS-GUIDE.md` and
-`docs/standards/README-STANDARD.md` defining the requirements.
+`docs/standards/readme-standard.md` defining the requirements.
 
 **OCI labels — ✅ fixed 2026-08-10, 20/20**: two rounds of fixes.
 1. The 7 providers at 0/7 (backblaze, btcpay, discord, docker, gitea,
@@ -328,7 +335,7 @@ Go 1.27.1 / golangci-lint 2.13.2 / build e5bf20a).
 
 **Tier 3 (Quality investment) — ✅ items 6, 7, 9 done 2026-08-10:**
 6. ~~Apply OCI labels to all providers~~ — done, 20/20 at 7/7 (see OCI Label & README Compliance above)
-7. ~~Bring README.md files up to the `docs/standards/README-STANDARD.md` structure~~ — done, 20/20 at 6/6. Also fixed several real content inaccuracies found along the way (false namespaced-API claims in backblaze/docker/libvirt, a stale "no controllers implemented" claim in gitea, discord's README not reflecting this session's v1beta1 work) — see OCI Label & README Compliance above for details
+7. ~~Bring README.md files up to the `docs/standards/readme-standard.md` structure~~ — done, 20/20 at 6/6. Also fixed several real content inaccuracies found along the way (false namespaced-API claims in backblaze/docker/libvirt, a stale "no controllers implemented" claim in gitea, discord's README not reflecting this session's v1beta1 work) — see OCI Label & README Compliance above for details
 8. Standardize test coverage reporting — including the new provider-discord v1beta1 controllers (0%) and provider-gitea's newly-wired RepositoryKey/RepositorySecret controllers (no test files at all)
 9. ~~Fix the two pre-existing, unrelated lint failures surfaced while verifying the runtime fix~~ — done: provider-backblaze (`cmd/provider/main.go:52`, unchecked `os.Setenv` now discarded explicitly) and provider-keycloak (`internal/controller/role/role_test.go:40`, `resetClientSecretFn` now wired into the mock's `ResetClientSecret` method instead of being dead code) — both verified with `make lint`/`go test`
 10. Establish security scanning baseline
@@ -351,12 +358,20 @@ ghcr.io/rossigee/provider-harbor:v0.17.5
 ```
 crossplane-providers/
 ├── docs/                    # Documentation and templates
+│   ├── index.md            # Provider directory + standardization status
+│   ├── troubleshooting.md  # Build/deploy troubleshooting checklist
+│   ├── maintenance-history.md  # Archived fix narratives
 │   ├── templates/          # GitHub Actions workflow templates
 │   └── standards/          # Coding standards and templates
+│       ├── platform.md     # Platform baseline (Crossplane >= v2.5)
+│       ├── readme-standard.md  # Provider README shape
+│       └── standard-gitignore.txt
 ├── scripts/
-│   └── audit_standards.sh  # Regenerates the Standardization Status section below
-├── provider-*/             # Individual provider repositories
+│   ├── audit_standards.sh  # Compliance source of truth
+│   └── update-docs.sh      # Refresh provider versions above
+├── provider-*/             # Individual provider repositories (submodules)
 ├── README.md               # Repository entry point
+├── CONTRIBUTING.md         # Where to file issues/PRs, new-provider checklist
 └── AGENTS.md               # Agent instructions
 ```
 

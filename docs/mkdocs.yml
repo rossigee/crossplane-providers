@@ -7,7 +7,10 @@ docs_dir: .
 
 nav:
   - Home: index.md
-  - Platform Baseline: standards/PLATFORM.md
+  - Standards:
+      - Overview: standards/README.md
+      - Platform Baseline: standards/platform.md
+      - README Standard: standards/readme-standard.md
   - Troubleshooting: troubleshooting.md
   - Maintenance History: maintenance-history.md
 
