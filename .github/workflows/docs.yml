@@ -35,7 +35,7 @@ jobs:
       - name: Build documentation
         run: |
           # Convert markdown table to HTML using pandoc
-          apt-get update && apt-get install -y pandoc
+          sudo apt-get update && sudo apt-get install -y pandoc
           sed -n '30,52p' docs/content/_index.md > /tmp/table.md
           pandoc -t html /tmp/table.md > /tmp/table.html
           sed -i '30,52d' docs/content/_index.md
