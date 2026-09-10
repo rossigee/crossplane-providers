@@ -11,7 +11,7 @@
 # Changes from 2025-09-26:
 # - Added publication verification step
 # - Uses github.token for registry authentication (OIDC)
-# - Confirmed softprops/action-gh-release@v2 (not deprecated v1)
+# - Confirmed softprops/action-gh-release@v3 (Node 24 runtime; v2 is Node 20 legacy)
 
 name: Release
 
@@ -150,7 +150,7 @@ jobs:
           fi
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.version.outputs.version }}
           name: ${{ github.event.repository.name }} ${{ steps.version.outputs.version }}
@@ -194,7 +194,7 @@ jobs:
 #    - Fails fast if publication incomplete or tags differ
 #
 # 7. MODERN TOOLING
-#    - softprops/action-gh-release@v2 (current, not deprecated)
+#    - softprops/action-gh-release@v3 (Node 24; v2 is the Node 20 legacy line)
 #    - Auto-generated release notes
 #    - Fail-fast error handling with set -e
 #
