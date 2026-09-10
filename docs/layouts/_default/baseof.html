@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 1rem; line-height: 1.6; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f5f5f5; }
+    pre { background: #f5f5f5; padding: 1rem; overflow-x: auto; }
+    code { background: #f5f5f5; padding: 0.2rem 0.4rem; }
+    a { color: #0066cc; }
+    nav { margin-bottom: 2rem; padding: 1rem; background: #f5f5f5; }
+    nav a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/standards/">Standards</a>
+    <a href="/troubleshooting/">Troubleshooting</a>
+    <a href="/maintenance-history/">History</a>
+  </nav>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+</body>
+</html>

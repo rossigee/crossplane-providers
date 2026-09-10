@@ -1,0 +1,8 @@
+baseURL = 'https://rossigee.github.io/crossplane-providers/'
+title = 'Crossplane Providers'
+theme = []
+publishDir = 'public'
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
