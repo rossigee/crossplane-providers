@@ -42,8 +42,7 @@ jobs:
           sed -i '29r /tmp/table.html' docs/content/_index.md
           
           hugo --source docs
-        run: |
-          hugo --source docs
+          
           # Fix relative links to include base path
           find docs/public -name "*.html" -exec sed -i 's|href="provider-|href="/crossplane-providers/provider-|g' {} \;
 
