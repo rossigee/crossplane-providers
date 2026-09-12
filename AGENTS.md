@@ -10,7 +10,7 @@ Native implementations only. Forbidden: `upjet`, `terraform-plugin-sdk`,
 `terraform-plugin-framework`, `terraform-provider-*`, any Hashicorp terraform
 dependency. Rationale: 5–10x smaller binaries, simpler direct-API clients,
 fewer CVEs, better K8s integration. Contributions using terraform scaffolding
-are rejected. Grandfathered exceptions (openstack, libvirt) are not a pattern.
+are rejected.
 
 ## Providers
 
