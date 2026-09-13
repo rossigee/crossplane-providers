@@ -26,9 +26,8 @@ See [docs](https://rossigee.github.io/crossplane-providers/) for versions and li
 kubectl crossplane install provider ghcr.io/rossigee/provider-minio:v0.21.0
 ```
 
-**v1 vs v2 APIs:** v1 = legacy cluster-scoped (`*.crossplane.io/v1alpha1`).
-v2 = namespaced (`.m.crossplane.io/v1beta1`, `namespace:`-scoped, better
-multi-tenancy). Use v2 for anything new; v1 keeps working where present.
+**v2 APIs:** All 20 providers use Crossplane v2 namespaced APIs (`.m.crossplane.io/v1beta1`).
+Cluster-scoped v1 APIs are deprecated; v2 provides namespace-scoped resources for better multi-tenancy.
 Per-resource examples live in each provider's `examples/` and `README.md`.
 
 ## Develop
