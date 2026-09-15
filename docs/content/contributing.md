@@ -1,9 +1,10 @@
 ---
-title: Contributors
+title: Contributing
 description: Contributing to Crossplane Providers
+aliases: [/contributors/]
 ---
 
-# Contributors
+# Contributing
 
 We welcome contributions from the community! Whether you've found a bug, have a feature request, or want to contribute code, we're happy to receive your input.
 
