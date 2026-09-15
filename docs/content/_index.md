@@ -31,3 +31,4 @@ A collection of lean, focused Crossplane providers designed for efficiency and o
 | [provider-rabbitmq](https://github.com/rossigee/provider-rabbitmq) | v0.5.0 | RabbitMQ management |
 | [provider-signoz](https://github.com/rossigee/provider-signoz) | v0.6.1 | SigNoz observability platform |
 | [provider-vault](https://github.com/rossigee/provider-vault) | v0.3.0 | HashiCorp Vault secrets management |
+trigger-ci
