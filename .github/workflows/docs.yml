@@ -33,22 +33,7 @@ jobs:
           hugo-version: '0.128.0'
 
       - name: Build documentation
-        run: |
-          # Convert markdown table to HTML using pandoc
-          sudo apt-get update && sudo apt-get install -y pandoc
-          sed -n '30,52p' docs/content/_index.md > /tmp/table.md
-          pandoc -t html /tmp/table.md > /tmp/table.html
-          sed -i '30,52d' docs/content/_index.md
-          sed -i '29r /tmp/table.html' docs/content/_index.md
-          
-          hugo --source docs
-          
-          # Fix relative links to include base path
-          find docs/public -name "*.html" -exec sed -i 's|href="/providers/|href="/crossplane-providers/providers/|g' {} \;
-          find docs/public -name "*.html" -exec sed -i 's|href="/standards/|href="/crossplane-providers/standards/|g' {} \;
-          find docs/public -name "*.html" -exec sed -i 's|href="/troubleshooting/|href="/crossplane-providers/troubleshooting/|g' {} \;
-          find docs/public -name "*.html" -exec sed -i 's|href="/maintenance-history/|href="/crossplane-providers/maintenance-history/|g' {} \;
-          find docs/public -name "*.html" -exec sed -i 's|href="/#|href="/crossplane-providers/#|g' {} \;
+        run: hugo --source docs
 
       - name: Setup Pages
         uses: actions/configure-pages@v6

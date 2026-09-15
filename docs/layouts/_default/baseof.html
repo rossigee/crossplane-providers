@@ -22,9 +22,9 @@
 </head>
 <body>
   <nav>
-    <a href="/crossplane-providers/">Home</a>
-    <a href="/crossplane-providers/standards/">Standards</a>
-    <a href="/crossplane-providers/contributors/">Contributors</a>
+    <a href="{{ "" | relURL }}">Home</a>
+    <a href="{{ "standards/" | relURL }}">Standards</a>
+    <a href="{{ "contributors/" | relURL }}">Contributors</a>
   </nav>
   <main>
     {{ block "main" . }}{{ end }}
