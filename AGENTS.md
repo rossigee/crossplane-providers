@@ -51,6 +51,8 @@ fork, CLI `v2.5.0`, Go `1.27.1`). Build submodule must be
 `https://github.com/rossigee/build` (`rossigee-lint-fixes`); upstream
 `crossplane/build` lacks targets. Never add a local `.golangci.yml`.
 
+Submodules were last initialized with `git submodule update --init --recursive`.
+
 ## Critical gotchas
 
 * `package/crossplane.yaml` with `kind: Provider` — required for
