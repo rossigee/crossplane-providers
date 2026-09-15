@@ -22,7 +22,8 @@ per-provider repositories (each `provider-*` dir is a git submodule).
    `ENTRYPOINT` (never `CMD`) — see `docs/troubleshooting.md`.
 5. README per `docs/standards/readme-standard.md`; CI from `docs/templates/`;
    publish to `ghcr.io/rossigee/` with a fully qualified tag.
-6. Register in `.gitmodules`, `docs/index.md`, and `scripts/update-docs.sh`.
+6. Register in `.gitmodules` and add a badge row to the providers table in
+   `docs/content/_index.md` (versions track tags automatically via shields.io).
 
 ## Clone
 
