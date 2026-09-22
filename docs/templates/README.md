@@ -19,11 +19,11 @@ All providers now use:
 
 | Issue | Before | After | Status |
 |-------|--------|-------|--------|
-| **Go Version** | Mixed (1.25.x) | Go 1.27.1 + GO_REQUIRED_VERSION in Makefiles | ✅ **Fixed** (2026-09-08) |
+| **Go Version** | Mixed / outdated | Go 1.27.1 + GO_REQUIRED_VERSION in Makefiles | ✅ **Fixed** (2026-09-08) |
 | **Lint Config** | None or per-repo | Identical .golangci.yml (v2, golangci-lint 2.13.2) in all + templates | ✅ **Fixed** |
 | **CI Structure** | Inconsistent (some missing security-scan) | Standardized template + full gosec/govuln/SARIF in ci.yml | ✅ **Fixed** (outliers migrated) |
 | **Actions** | Mixed v4/v5 | checkout@v7 + setup-go@v7 | ✅ **Fixed** |
-| **Templates** | Stale (1.26.5, old comments) | Updated + .golangci.yml added | ✅ **Fixed** |
+| **Templates** | Stale / outdated comments | Updated + .golangci.yml added | ✅ **Fixed** |
 | **pre-commit / hadolint** | Mixed / missing excludes | pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes | ✅ **Fixed** (2026-09-08) |
 
 ### Provider Update Status
@@ -59,57 +59,6 @@ This directory contains standardized CI/CD templates designed to:
 - ⚡ **Modern tooling** (Go 1.27.1, ubuntu-24.04, checkout@v7, setup-go@v7, golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)
 - 📋 **Consistent patterns** across all 20 providers + .golangci.yml lint config
 - 🧹 **Clean excludes** (`tools/` and `*_test.go` excluded from go-fmt/go-imports/go-vet where needed)
-
-## Version History
-
-### 2026-09-10 (Current)
-**GitHub Actions version refresh** (verified against upstream latest tags):
-- ✅ **setup-go v6 → v7** (`security-template.yml`; rest already v7)
-- ✅ **softprops/action-gh-release v2 → v3** (Node 20 → 24 runtime; no input changes)
-- ✅ **dependency-review-action v4 → v5**, **configure-pages v5 → v6**, **deploy-pages v4 → v5**, **setup-python v5 → v7**, **upload-pages-artifact v6 → v5** (v6 never existed — this was failing the meta docs workflow on every run)
-- ✅ **skip-duplicate-actions unified at floating `v5`** (was pinned to two different patches, v5.3.1 vs v5.3.2)
-- ⚠️ Left floating intentionally: `securego/gosec@master`, `trufflesecurity/trufflehog@main` (no versioned tags consumed; pin if reproducibility bites)
-
-### 2026-09-08
-**Go 1.27.1 + golangci-lint 2.13.2 upgrade**:
-- ✅ **Go 1.27.1** everywhere (`go.mod`, `Makefile GO_REQUIRED_VERSION`, `ci.yml GO_VERSION`)
-- ✅ **golangci-lint 2.13.2** (`.golangci.yml` + `Makefile GOLANGCILINT_VERSION`)
-- ✅ **pre-commit v6.0.0 + hadolint v2.12.0** standardized; `tools/` and `*_test.go` excludes added (e.g. `exclude: 'zz_generated\..*\.go$|tools/'` and `_test.go` for no-commit-secrets)
-- ✅ **build @ e5bf20a** (`rossigee-lint-fixes`) + **runtime v2.5.0** (`rossigee/crossplane-runtime` fork) across all 20 providers
-- ✅ **Docs refreshed**: `docs/index.md` Latest Version + Core Metrics updated from `git describe --tags` ground truth
-
-### 2025-10-28
-**CI/CD Consistency Analysis & Updates**:
-- ✅ **Go version standardized**: Updated to Go 1.25.3 across all templates
-- ✅ **Modernized actions**: actions/setup-go@v7 (latest version)
-- ✅ **Fixed SARIF uploads**: Added `continue-on-error: true` to security scan uploads
-- ✅ **Updated documentation**: All references now reflect Go 1.25.3
-- ✅ **Build validation standardized**: Documented `make docker.build` as standard approach
-
-**Analysis covered**: All 16 providers with findings applied to templates
-
-### 2025-10-23
-**Changes**:
-- ✅ **Added verification step** to release template
-  - Pulls both version and latest tags after publishing
-  - Verifies images are pullable from registry
-  - Confirms version and latest tags point to identical image digest
-  - Fails fast if publication incomplete or tags differ
-- ✅ **Uses github.token** for authentication (OIDC, no PAT required)
-- ✅ **Confirmed modern tooling**: softprops/action-gh-release@v3 (Node 24; v2 is Node 20 legacy)
-- ✅ **Added fail-fast behavior** with `set -e` in all workflow steps
-
-**Fixes regressions from**:
-- provider-harbor's 2025-10-01 template which reverted to:
-  - ❌ GITHUB_TOKEN instead of github.token (OIDC)
-  - ❌ Deprecated actions/create-release@v1
-
-### 2025-09-26
-**Initial standardization**:
-- Separated CI (validation) from Release (publishing)
-- Updated to Go 1.25.1
-- Eliminated scheduled security scans
-- Standardized registry publishing
 
 ## Template Files
 
