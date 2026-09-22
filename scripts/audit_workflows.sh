@@ -72,8 +72,9 @@ for provider_dir in "$ROOT"/provider-*; do
       continue
     fi
 
-    diff_out=$(diff -u "$template" "$actual" 2>/dev/null || true)
-    diff_lines=$(echo "$diff_out" | wc -l | awk '{print $1}')
+    # Ignore version comment lines for diff to reduce noise from header drift
+    diff_lines=$(diff -u --ignore-all-space --ignore-blank-lines -I '^# Version:' "$template" "$actual" 2>/dev/null | wc -l | tr -d ' \n' || echo 0)
+    if [[ -z "$diff_lines" ]]; then diff_lines=0; fi
 
     # Extract header version if present
     header=$(grep -E '^# Version:' "$actual" | head -1 || echo "(no version header)")
