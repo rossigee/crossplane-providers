@@ -14,7 +14,7 @@ tables); live status is rendered in `docs/content/_index.md`.
 | Platform baseline (Crossplane `>= v2.5`, runtime/CLI/Go/lint pins) | `platform.md` | `audit_standards.sh` (runtime, fork, CLI, Go) |
 | Provider README shape (10 elements, 6 machine-audited) | `readme-standard.md` | `audit_standards.sh` (6 headings); human review (rest) |
 | New-provider `.gitignore` | `standard-gitignore.txt` | human review on new-provider PRs |
-| CI/CD workflows (CI validates, Release publishes) + lint config | `../templates/` | `audit_standards.sh` (workflows, dependabot) |
+| CI/CD workflows (CI validates, Release publishes) + lint config | `../templates/` | `audit_standards.sh` (workflows, dependabot); `audit_workflows.sh` (template drift, allowed list in script header) |
 | OCI image labels (7 static + dynamic) | `../templates/OCI-LABELS-GUIDE.md` (+ `generate-oci-labels.sh`) | `audit_standards.sh` (static count) |
 | Package conventions (`crossplane.yaml`, ENTRYPOINT, cert env vars) | `../../AGENTS.md` (Critical gotchas) | `audit_standards.sh` (filename, ENTRYPOINT) |
 | Native-only mandate (no Terraform/Upjet) | `AGENTS.md` + `CONTRIBUTING.md` | human review (reject terraform PRs) |

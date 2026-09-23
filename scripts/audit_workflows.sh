@@ -13,6 +13,21 @@
 #   - Custom steps (e.g. libvirt-dev, system deps)
 #   - Header version drift
 #
+# Allowed (intentional) drift — counted as "lines differ" but not defects:
+#   - ci.yml: provider-specific apt deps (e.g. libvirt-dev), needs: job
+#     graphs (check-diff), extra checkout tokens, codecov `files:` vs
+#     `file:`, gosec/SARIF pin tweaks
+#   - release.yml: historical change-note comments (e.g. minio
+#     "Changes from 2025-09-26"), provider-specific verification lines
+#   - security.yml: provider-specific CodeQL/schedule knobs after the
+#     shared header; GO_VERSION must still equal the template pin
+#   - auto-merge.yml: must be a byte-for-byte copy of the template
+#     (no provider-specific logic)
+#   - Header `# Version:` lines are ignored by the diff
+#
+# "N lines differ" is a unified-diff line count (context + hunks), not a
+# count of changed content lines. Threshold for flagging: >5 diff lines.
+#
 # Run from the root of the crossplane-providers meta-repo.
 
 set -euo pipefail

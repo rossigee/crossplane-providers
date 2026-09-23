@@ -37,6 +37,16 @@ All providers now use:
 
 Special providers retain documented customizations (extra workflows, CGO, terraform generators).
 
+### Allowed template drift
+
+`scripts/audit_workflows.sh` flags >5 unified-diff lines vs the templates.
+Intentional (not defects) — full list in that script’s header:
+
+* **ci.yml**: system deps (`libvirt-dev`), `needs:` graphs, extra tokens, codecov `files:`
+* **release.yml**: historical change-note comments, provider verification lines
+* **security.yml**: CodeQL/schedule knobs (GO_VERSION must still match the pin)
+* **auto-merge.yml**: must match the template byte-for-byte
+
 ## Overview
 
 This directory contains standardized CI/CD templates designed to:
