@@ -14,8 +14,8 @@ are rejected.
 
 ## Providers
 
-20 providers; see [docs/index.md](./docs/index.md) for versions, origins, API
-scope, and audit-generated standardization status. Production: cloudflare,
+20 providers; see [docs/content/_index.md](./docs/content/_index.md) for versions,
+origins, API scope, and audit-generated standardization status. Production: cloudflare,
 harbor, mailgun, minio, plausible. Registry: `ghcr.io/rossigee/provider-*:tag`
 (fully qualified).
 
@@ -45,7 +45,8 @@ make publish VERSION=vX.Y.Z PLATFORMS=linux_amd64   # full publish (recommended)
 make xpkg.build      # Crossplane package with embedded runtime
 ```
 
-Prerequisites and version floor: [docs/standards/platform.md](./docs/standards/platform.md)
+Prerequisites and version floor:
+[docs/content/standards/platform.md](./docs/content/standards/platform.md)
 (Crossplane core `>= v2.5`, runtime `v2.5.0` via `rossigee/crossplane-runtime`
 fork, CLI `v2.5.0`, Go `1.27.1`). Build submodule must be
 `https://github.com/rossigee/build` (`rossigee-lint-fixes`); upstream
@@ -60,7 +61,7 @@ Submodules were last initialized with `git submodule update --init --recursive`.
 * Dockerfile `ENTRYPOINT ["/usr/local/bin/provider"]`, never `CMD`.
 * `cmd/provider/main.go`: `CertDir: os.Getenv("WEBHOOK_TLS_CERT_DIR")`, never
   hardcoded paths.
-* Full checklist: [docs/troubleshooting.md](./docs/troubleshooting.md).
+* Full checklist: Critical gotchas above + `docs/content/standards/`.
 
 ## APIs: v1 vs v2
 
@@ -72,9 +73,9 @@ Submodules were last initialized with `git submodule update --init --recursive`.
 
 ## Standards
 
-* Index of all norms + enforcement: `docs/standards/README.md`.
-* Provider README shape: `docs/standards/readme-standard.md`.
-* Platform floor: `docs/standards/platform.md`.
+* Index of all norms + enforcement: `docs/content/standards/_index.md`.
+* Provider README shape: `docs/content/standards/readme-standard.md`.
+* Platform floor: `docs/content/standards/platform.md`.
 * CI templates: `docs/templates/` (CI validates, Release publishes).
 * Compliance source of truth: `scripts/audit_standards.sh`.
-* History moved to: `docs/maintenance-history.md`.
+* History: `docs/content/maintenance-history.md`.

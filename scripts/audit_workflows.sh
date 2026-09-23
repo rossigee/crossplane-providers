@@ -129,7 +129,7 @@ fi
 
 echo "## Recommendations" >> "$OUTPUT"
 echo "" >> "$OUTPUT"
-echo "See AGENTS.md and docs/standards/ for standardization policy." >> "$OUTPUT"
+echo "See AGENTS.md and docs/content/standards/ for standardization policy." >> "$OUTPUT"
 echo "Run this script regularly or add to CI." >> "$OUTPUT"
 
 echo "Audit complete. Output written to $OUTPUT" >&2

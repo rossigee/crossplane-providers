@@ -138,7 +138,7 @@ jobs:
           # NOTE: The rossigee/build fork's `make publish` does not tag a `:latest`
           # and does not produce a digest-equality between :VERSION and :latest,
           # so we do not assert either here. Documented in
-          # docs/troubleshooting.md (publish workflow section).
+          # AGENTS.md Critical gotchas (publish workflow section).
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3

@@ -7,7 +7,7 @@ description: All normative standards for Crossplane providers in this meta-repo
 
 All normative standards for providers in this meta-repo. Compliance source of
 truth is `scripts/audit_standards.sh` (ground-truth scan, not hand-maintained
-tables); live status is rendered in `docs/index.md`.
+tables); live status is rendered in `docs/content/_index.md`.
 
 | Standard | File | Enforced by |
 |----------|------|-------------|
@@ -16,11 +16,11 @@ tables); live status is rendered in `docs/index.md`.
 | New-provider `.gitignore` | `standard-gitignore.txt` | human review on new-provider PRs |
 | CI/CD workflows (CI validates, Release publishes) + lint config | `../templates/` | `audit_standards.sh` (workflows, dependabot) |
 | OCI image labels (7 static + dynamic) | `../templates/OCI-LABELS-GUIDE.md` (+ `generate-oci-labels.sh`) | `audit_standards.sh` (static count) |
-| Package conventions (`crossplane.yaml`, ENTRYPOINT, cert env vars) | `../troubleshooting.md` | `audit_standards.sh` (filename, ENTRYPOINT) |
+| Package conventions (`crossplane.yaml`, ENTRYPOINT, cert env vars) | `../../AGENTS.md` (Critical gotchas) | `audit_standards.sh` (filename, ENTRYPOINT) |
 | Native-only mandate (no Terraform/Upjet) | `AGENTS.md` + `CONTRIBUTING.md` | human review (reject terraform PRs) |
 | API versioning (v1 cluster-scoped vs v2 namespaced) | `AGENTS.md` | `audit_standards.sh` (v1beta1 controllers) |
 
 Naming: standards files are lowercase kebab-case. Scaffolding skeleton for new
 provider READMEs: `template/README.md` (implements `readme-standard.md`).
 
-**2026-09 workflow standardization round complete** (all 19 providers): templates updated to Go 1.27.1, full security scanning, AGPL allowance, xpkg-only publishing overrides + img neutralization on ghcr.io/rossigee. Tracked via `scripts/audit_workflows.sh`. See maintenance history for details.
+**2026-09 workflow standardization round complete** (all 20 providers): templates updated to Go 1.27.1, full security scanning, AGPL allowance, xpkg-only publishing overrides + img neutralization on ghcr.io/rossigee. Tracked via `scripts/audit_workflows.sh`. See [maintenance history](../maintenance-history.md) for details.

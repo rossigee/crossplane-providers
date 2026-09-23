@@ -12,7 +12,7 @@
 #   - build submodule:       github.com/rossigee/build @ rossigee-lint-fixes @ e5bf20a
 #   - runtime:               crossplane-runtime/v2 v2.5.0 (rossigee fork)
 #   - crossplane CLI:        v2.5.0 from cli.crossplane.io
-#   - crossplane core floor: >= v2.5 (see docs/standards/platform.md)
+#   - crossplane core floor: >= v2.5 (see docs/content/standards/platform.md)
 #   - pre-commit:            v6.0.0, hadolint v2.12.0
 #   - workflows:             ci.yml, release.yml, security.yml, auto-merge.yml,
 #                             .github/dependabot.yml
@@ -186,28 +186,35 @@ case "$FORMAT" in
         done
         ;;
     text|*)
-        echo "Standards Audit — canonical: Go $STD_GO_VERSION, golangci-lint $STD_LINT_VERSION, build@$STD_BUILD_BRANCH, runtime $STD_RUNTIME_VERSION ($STD_RUNTIME_FORK), CLI $STD_CLI_VERSION, core >= v2.5 (docs/standards/platform.md)"
+        echo "Standards Audit — canonical: Go $STD_GO_VERSION, golangci-lint $STD_LINT_VERSION, build@$STD_BUILD_BRANCH, runtime $STD_RUNTIME_VERSION ($STD_RUNTIME_FORK), CLI $STD_CLI_VERSION, core >= v2.5 (docs/content/standards/platform.md)"
         echo "======================================================================"
+        FAIL_COUNT=0
         for row in "${ROWS[@]}"; do
             IFS='|' read -r name go_v mk_go mk_lint b_url b_branch b_commit ci rel sec am dep ci_go pkg ep oci readme rt_v rt_fork cli_v <<< "$row"
             echo "-- $name --"
-            [ "$go_v" != "$STD_GO_VERSION" ] && echo "  [DRIFT] go.mod version=$go_v (want $STD_GO_VERSION)"
-            [ "$mk_go" != "${STD_GO_VERSION%.*}" ] && [ "$mk_go" != "$STD_GO_VERSION" ] && echo "  [DRIFT] Makefile GO_REQUIRED_VERSION=$mk_go"
-            [ "$mk_lint" != "$STD_LINT_VERSION" ] && echo "  [DRIFT] Makefile GOLANGCILINT_VERSION=$mk_lint (want $STD_LINT_VERSION)"
-            [ "$b_url" != "$STD_BUILD_URL" ] && echo "  [DRIFT] build submodule url=$b_url"
-            [ "$b_branch" != "$STD_BUILD_BRANCH" ] && echo "  [DRIFT] build submodule branch=$b_branch (want $STD_BUILD_BRANCH)"
-            [ "$ci" != "yes" ] && echo "  [MISSING] ci.yml"
-            [ "$rel" != "yes" ] && echo "  [MISSING] release.yml"
-            [ "$sec" != "yes" ] && echo "  [MISSING] security.yml"
-            [ "$am" != "yes" ] && echo "  [MISSING] auto-merge.yml"
-            [ "$dep" != "yes" ] && echo "  [MISSING] .github/dependabot.yml"
-            [ "$pkg" != "yes" ] && echo "  [FAIL] package file: $pkg"
-            [ "$ep" != "yes" ] && echo "  [FAIL] dockerfile entrypoint: $ep"
-            [ "$oci" != "7" ] && echo "  [PARTIAL] oci labels: $oci/7"
-            [ "$readme" != "6" ] && echo "  [PARTIAL] readme sections: $readme/6"
-            [ "$rt_v" != "$STD_RUNTIME_VERSION" ] && echo "  [DRIFT] runtime version=$rt_v (want $STD_RUNTIME_VERSION)"
-            [ "$rt_fork" != "$STD_RUNTIME_FORK" ] && echo "  [DRIFT] runtime fork=$rt_fork (want $STD_RUNTIME_FORK)"
-            [ "$cli_v" != "$STD_CLI_VERSION" ] && echo "  [DRIFT] crossplane CLI=$cli_v (want $STD_CLI_VERSION)"
+            if [ "$go_v" != "$STD_GO_VERSION" ]; then echo "  [DRIFT] go.mod version=$go_v (want $STD_GO_VERSION)"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$mk_go" != "${STD_GO_VERSION%.*}" ] && [ "$mk_go" != "$STD_GO_VERSION" ]; then echo "  [DRIFT] Makefile GO_REQUIRED_VERSION=$mk_go"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$mk_lint" != "$STD_LINT_VERSION" ]; then echo "  [DRIFT] Makefile GOLANGCILINT_VERSION=$mk_lint (want $STD_LINT_VERSION)"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$b_url" != "$STD_BUILD_URL" ]; then echo "  [DRIFT] build submodule url=$b_url"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$b_branch" != "$STD_BUILD_BRANCH" ]; then echo "  [DRIFT] build submodule branch=$b_branch (want $STD_BUILD_BRANCH)"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$ci" != "yes" ]; then echo "  [MISSING] ci.yml"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$rel" != "yes" ]; then echo "  [MISSING] release.yml"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$sec" != "yes" ]; then echo "  [MISSING] security.yml"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$am" != "yes" ]; then echo "  [MISSING] auto-merge.yml"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$dep" != "yes" ]; then echo "  [MISSING] .github/dependabot.yml"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$pkg" != "yes" ]; then echo "  [FAIL] package file: $pkg"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$ep" != "yes" ]; then echo "  [FAIL] dockerfile entrypoint: $ep"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$oci" != "7" ]; then echo "  [PARTIAL] oci labels: $oci/7"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$readme" != "6" ]; then echo "  [PARTIAL] readme sections: $readme/6"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$rt_v" != "$STD_RUNTIME_VERSION" ]; then echo "  [DRIFT] runtime version=$rt_v (want $STD_RUNTIME_VERSION)"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$rt_fork" != "$STD_RUNTIME_FORK" ]; then echo "  [DRIFT] runtime fork=$rt_fork (want $STD_RUNTIME_FORK)"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
+            if [ "$cli_v" != "$STD_CLI_VERSION" ]; then echo "  [DRIFT] crossplane CLI=$cli_v (want $STD_CLI_VERSION)"; FAIL_COUNT=$((FAIL_COUNT+1)); fi
         done
+        if [ "$FAIL_COUNT" -gt 0 ]; then
+            echo "FAILURES: $FAIL_COUNT"
+            exit 1
+        fi
+        echo "All 20 providers pass."
+        exit 0
         ;;
 esac

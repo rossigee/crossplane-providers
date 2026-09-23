@@ -1,8 +1,8 @@
 # Crossplane Provider CI/CD Templates
 
 **Version 2026-09-08** - Standardized GitHub Actions workflows + .golangci.yml for all Crossplane providers.
-Part of the [standards](../standards/README.md); platform floor (Crossplane
-`>= v2.5`): [platform.md](../standards/platform.md).
+Part of the [standards](../content/standards/_index.md); platform floor (Crossplane
+`>= v2.5`): [platform.md](../content/standards/platform.md).
 
 All providers now use:
 - Go 1.27.1
@@ -79,18 +79,12 @@ This directory contains standardized CI/CD templates designed to:
 
 **Standardized Build Validation**:
 ```bash
-# RECOMMENDED approach (used by most providers):
-make build                    # Build binary
-make docker.build            # Build Docker image locally
-make xpkg.build              # Build Crossplane package
-
-# ALTERNATIVE (used by provider-backblaze):
-make build                    # Build binary  
-make do.build.images         # Alternative Docker build target
-make xpkg.build              # Build Crossplane package
+# Standard approach (all providers; `make build` builds the image via
+# build.artifacts.platform — the nonexistent `make docker.build` was removed
+# 2026-09-23):
+make build                    # Build binary + Docker image locally
+make xpkg.build               # Build Crossplane package
 ```
-
-**Note**: Use `make docker.build` for consistency unless the provider specifically requires `do.build.images`
 
 ### 2. `release-template.yml` - Publishing Only
 **Purpose**: Registry publishing ONLY on version tag creation

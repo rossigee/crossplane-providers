@@ -15,12 +15,12 @@ per-provider repositories (each `provider-*` dir is a git submodule).
 1. Native Crossplane implementations only — no `upjet`, `terraform-plugin-sdk` /
    `framework`, `terraform-provider-*` (see `AGENTS.md` mandate).
 2. Platform floor: Crossplane core `>= v2.5`, runtime `v2.5.0` via
-   `rossigee/crossplane-runtime` fork — see `docs/standards/platform.md`.
+   `rossigee/crossplane-runtime` fork — see `docs/content/standards/platform.md`.
 3. Build: `rossigee/build` submodule (`rossigee-lint-fixes`), no local
    `.golangci.yml`. Verify `make lint reviewable test build`.
 4. Package: `package/crossplane.yaml` (`kind: Provider`), Dockerfile
-   `ENTRYPOINT` (never `CMD`) — see `docs/troubleshooting.md`.
-5. README per `docs/standards/readme-standard.md`; CI from `docs/templates/`;
+   `ENTRYPOINT` (never `CMD`) — see `AGENTS.md` (Critical gotchas).
+5. README per `docs/content/standards/readme-standard.md`; CI from `docs/templates/`;
    publish to `ghcr.io/rossigee/` with a fully qualified tag.
 6. Register in `.gitmodules` and add a badge row to the providers table in
    `docs/content/_index.md` (versions track tags automatically via shields.io).

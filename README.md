@@ -58,8 +58,8 @@ New providers must be **native Crossplane implementations** — no `upjet`,
 dependencies (smaller binaries, simpler code, fewer CVEs). Upstream-derived
 exceptions (openstack, libvirt) are grandfathered, not a pattern to copy.
 
-* New provider checklist: `docs/standards/readme-standard.md` (README shape),
-  `docs/standards/platform.md` (version floor), `docs/templates/` (CI).
+* New provider checklist: `docs/content/standards/readme-standard.md` (README shape),
+  `docs/content/standards/platform.md` (version floor), `docs/templates/` (CI).
 * Standards source of truth: `scripts/audit_standards.sh`.
 * Participation: see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
