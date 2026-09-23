@@ -48,9 +48,6 @@ custom_steps=""
 for provider_dir in "$ROOT"/provider-*; do
   [[ -d "$provider_dir" ]] || continue
   name=$(basename "$provider_dir")
-  # Skip meta or non-provider dirs if any
-  [[ "$name" == "provider-openstack" ]] && continue  # example exclusion
-
   total_providers=$((total_providers + 1))
 
   echo "## $name" >> "$OUTPUT"
