@@ -32,6 +32,9 @@ jobs:
         with:
           hugo-version: '0.128.0'
 
+      - name: Generate provider API‑coverage reports
+        run: bash score-providers.sh
+
       - name: Build documentation
         run: hugo --source docs
 
