@@ -1,10 +1,10 @@
 # Crossplane Provider CI/CD Templates
 
-**Version 2026-09-08** - Standardized GitHub Actions workflows + .golangci.yml for all Crossplane providers.
+**Version 2026-09-24** - Standardized GitHub Actions workflows + release standards for all Crossplane providers.
 Part of the [standards](../content/standards/_index.md); platform floor (Crossplane
 `>= v2.5`): [platform.md](../content/standards/platform.md).
 
-All providers now use:
+The release-preparation branches use:
 - Go 1.27.1
 - golangci-lint 2.13.2 with .golangci.yml (gofmt + goimports + core linters)
 - pre-commit v6.0.0 + hadolint v2.12.0 (excludes `tools/` and `*_test.go` where appropriate)
@@ -13,7 +13,7 @@ All providers now use:
 
 ## CI/CD Consistency Analysis & Updates
 
-**Analysis Completed**: Comprehensive review of CI/CD configurations across all 16 Crossplane providers revealed several inconsistencies that have been resolved.
+**Analysis Completed**: Comprehensive review of CI/CD configurations across all 20 Crossplane providers revealed several inconsistencies that have been resolved.
 
 ### Key Findings & Fixes Applied
 
@@ -28,14 +28,14 @@ All providers now use:
 
 ### Provider Update Status
 
-**All 20 providers are now aligned** (as of 2026-09-08):
+Release preparation for all 20 providers is aligned as of 2026-09-24:
 - .golangci.yml present and identical in all (golangci-lint 2.13.2)
 - ci.yml follows standardized template (with security-scan job) — `GO_VERSION: '1.27.1'`
 - GO 1.27.1 everywhere in workflows + Makefiles + go.mod (verified via `scripts/audit_standards.sh`)
 - pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes standardized
 - Outliers (hostinger, minio, btcpay) migrated to full template
 
-Special providers retain documented customizations (extra workflows, CGO, terraform generators).
+Special providers retain documented customizations (extra workflows, CGO, or native packaging).
 
 ### Allowed template drift
 
@@ -58,7 +58,7 @@ This directory contains standardized CI/CD templates designed to:
 ## Problem Solved
 
 **Before**: 57+ unique workflow files across providers causing:
-- 112+ weekly security scan emails (16 providers × daily scans)
+- 112+ weekly security scan emails (20 providers × daily scans)
 - Tag conflicts between CI and release workflows
 - Inconsistent patterns (3 different approaches)
 - Outdated tooling and versions
@@ -97,23 +97,22 @@ make xpkg.build               # Build Crossplane package
 ```
 
 ### 2. `release-template.yml` - Publishing Only
-**Purpose**: Registry publishing ONLY on version tag creation
+**Purpose**: Registry and GitHub publishing only on version tag creation
 
 ```yaml
-# Triggers: push (tags v*.*.*), workflow_dispatch
-# Jobs: Single release job with all publishing
-# Publishing: Docker images + Crossplane packages
-# Verification: Confirms successful publication
+# Triggers: push (tags v*.*.*)
+# Source: tag must equal current origin/master
+# Publishing: versioned xpkg plus latest digest alias
+# Verification: equal digests and linux/amd64 + linux/arm64 manifests
 ```
 
 **Key Features**:
-- Single source of truth for publishing
-- Version and latest tags from same build (verified via digest comparison)
-- Automated verification step (pulls images and confirms identical digests)
-- Manual dispatch option for emergency releases
+- Tag-only publishing from the exact green `master` commit
+- Exact `vMAJOR.MINOR.PATCH` validation
+- QEMU-backed `linux_amd64` and `linux_arm64` builds
+- Version and `latest` aliases verified by digest equality
+- GHCR authentication with the repository `github.token`
 - GitHub release creation with auto-generated notes
-- github.token authentication (OIDC, no PAT required)
-- Modern tooling (softprops/action-gh-release@v3, not deprecated v1/v2)
 
 ### 3. `security-template.yml` - On-Demand Only
 **Purpose**: Manual security scanning WITHOUT scheduled triggers
@@ -191,19 +190,18 @@ CI's `govulncheck` + `gosec` must pass before auto-merge proceeds.
 For each provider (e.g., `provider-mailgun`):
 
 ```bash
-cd provider-mailgun/.github/workflows
+cd provider-mailgun
 
-# Backup existing workflows (optional)
-mkdir -p ../backup
-cp *.yml ../backup/ 2>/dev/null || true
+# Open a review branch; do not push provider changes directly to master
+git switch -c chore/standardize-release-process
 
 # Apply new templates
-cp ../../../docs/templates/ci-template.yml ci.yml
-cp ../../../docs/templates/release-template.yml release.yml
-cp ../../../docs/templates/security-template.yml security.yml
+cp ../../docs/templates/ci-template.yml .github/workflows/ci.yml
+cp ../../docs/templates/release-template.yml .github/workflows/release.yml
+cp ../../docs/templates/security-template.yml .github/workflows/security.yml
 
 # Remove problematic scheduled workflows
-rm -f backport.yml commands.yml renovate.yml cruft-update.yml docs.yml
+rm -f .github/workflows/backport.yml .github/workflows/commands.yml .github/workflows/renovate.yml .github/workflows/cruft-update.yml .github/workflows/docs.yml
 
 # Commit changes
 git add -A
@@ -213,6 +211,9 @@ git commit -m "Standardize CI/CD workflows
 - Remove scheduled security scans to eliminate email spam
 - Separate CI (validation) from Release (publishing)
 - Update to Go 1.27.1 and modern tooling (golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)"
+
+git push -u origin chore/standardize-release-process
+gh pr create --base master --head chore/standardize-release-process
 ```
 
 ### Step 2: Validate Configuration
@@ -220,11 +221,9 @@ git commit -m "Standardize CI/CD workflows
 After applying templates:
 
 ```bash
-# Test CI workflow (should only validate, not publish)
-git push origin master
-
-# Test release workflow (should publish)
-git tag v1.0.0
+# Open a PR and wait for review/CI before tagging
+# Test release workflow only from the merged, green master commit
+git tag -a v1.0.0 -m "Release v1.0.0" HEAD
 git push origin v1.0.0
 
 # Test security workflow (manual only)
@@ -235,16 +234,14 @@ git push origin v1.0.0
 
 **Expected Behavior**:
 - ✅ **CI workflow**: Runs on push/PR, validates build, NO publishing
-- ✅ **Release workflow**: Runs on tags, publishes to ghcr.io/rossigee
-- ✅ **Security workflow**: Manual only, no scheduled emails
-- ✅ **Registry tags**: Version and latest point to same image
+- ✅ **Release workflow**: Runs on exact `vMAJOR.MINOR.PATCH` tags and publishes the xpkg to GHCR
+- ✅ **Registry tags**: Version and `latest` resolve to the same OCI index
+- ✅ **Platforms**: The index contains `linux/amd64` and `linux/arm64`
 
 **Verify Success**:
 ```bash
-# Check that version and latest tags are identical
-docker manifest inspect ghcr.io/rossigee/provider-mailgun:v1.0.0
-docker manifest inspect ghcr.io/rossigee/provider-mailgun:latest
-# Should show same config digest
+docker buildx imagetools inspect ghcr.io/rossigee/provider-mailgun:v1.0.0 --format '{{.Manifest.Digest}}'
+docker buildx imagetools inspect ghcr.io/rossigee/provider-mailgun:latest --format '{{.Manifest.Digest}}'
 ```
 
 ## Batch Application Script
@@ -257,9 +254,10 @@ Apply templates to all providers:
 
 PROVIDERS=(
   provider-backblaze provider-btcpay provider-cloudflare provider-discord
-  provider-docker provider-gitea provider-harbor provider-http
-  provider-libvirt provider-mailgun provider-matrix provider-minio
-  provider-namecheap provider-openstack provider-plausible provider-signoz
+  provider-docker provider-gitea provider-harbor provider-hostinger provider-http
+  provider-keycloak provider-libvirt provider-mailgun provider-matrix provider-minio
+  provider-namecheap provider-openstack provider-plausible provider-rabbitmq
+  provider-signoz provider-vault
 )
 
 for provider in "${PROVIDERS[@]}"; do

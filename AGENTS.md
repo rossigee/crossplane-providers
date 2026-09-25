@@ -41,8 +41,14 @@ make reviewable      # generate + lint + test + govulncheck
 make test            # unit tests
 make generate        # CRDs
 make build           # binary + local image
-make publish VERSION=vX.Y.Z PLATFORMS=linux_amd64   # full publish (recommended)
 make xpkg.build      # Crossplane package with embedded runtime
+```
+
+Release only after the release-preparation PR is merged and `master` is green:
+
+```bash
+git tag -a vX.Y.Z -m "Release vX.Y.Z" HEAD
+git push origin vX.Y.Z
 ```
 
 Prerequisites and version floor:

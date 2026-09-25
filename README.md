@@ -23,7 +23,7 @@ See [docs](https://rossigee.github.io/crossplane-providers/) for versions and li
 
 ```bash
 # Install a provider (example)
-kubectl crossplane install provider ghcr.io/rossigee/provider-minio:v0.21.0
+kubectl crossplane install provider ghcr.io/rossigee/provider-minio:v0.21.3
 ```
 
 **v2 APIs:** All 20 providers use Crossplane v2 namespaced APIs (`.m.crossplane.io/v1beta1`).
@@ -40,8 +40,11 @@ git submodule update --init --recursive
 
 # Per-provider workflow
 cd provider-minio
-make lint reviewable test build
-make publish VERSION=vX.Y.Z PLATFORMS=linux_amd64
+make lint reviewable test build xpkg.build
+
+# After the release PR is merged and master is green
+git tag -a vX.Y.Z -m "Release vX.Y.Z" HEAD
+git push origin vX.Y.Z
 ```
 
 Shared tooling: [rossigee/build](https://github.com/rossigee/build) submodule
