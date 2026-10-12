@@ -10,7 +10,7 @@ Minimum supported platform for all providers in this repository.
 | Component | Standard | Source |
 |-----------|----------|--------|
 | Crossplane core | `>= v2.5` | namespaced (`.m.`) APIs, `DeploymentRuntimeConfig` |
-| crossplane-runtime/v2 | `v2.5.0` via `github.com/rossigee/crossplane-runtime` fork (`replace` directive) | fork carries events fix below |
+| crossplane-runtime/v2 | `v2.5.1` via `github.com/rossigee/crossplane-runtime` fork (`replace` directive) | fork carries events fix below; `v2.5.1` adds ExternalLister |
 | crossplane CLI | `v2.5.0` from `cli.crossplane.io` | matches `rossigee/build` `makelib/k8s_tools.mk` |
 | Go | `1.27.1` | `go.mod`, `Makefile GO_REQUIRED_VERSION`, `ci.yml GO_VERSION` |
 | golangci-lint | `2.13.2` | `.golangci.yml` + `Makefile GOLANGCILINT_VERSION` |
@@ -19,7 +19,7 @@ Minimum supported platform for all providers in this repository.
 
 ## Why v2.5 (not older)
 
-All 20 providers build on `crossplane-runtime/v2 v2.5.0` via the
+All 20 providers build on `crossplane-runtime/v2 v2.5.1` via the
 `rossigee/crossplane-runtime` fork because upstream has not yet merged the
 migration from the deprecated `record.EventRecorder` (core `v1/Event`) to
 `events.EventRecorder` (`events.k8s.io/v1`), required for newer

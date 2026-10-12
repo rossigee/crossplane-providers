@@ -53,7 +53,7 @@ git push origin vX.Y.Z
 
 Prerequisites and version floor:
 [docs/content/standards/platform.md](./docs/content/standards/platform.md)
-(Crossplane core `>= v2.5`, runtime `v2.5.0` via `rossigee/crossplane-runtime`
+(Crossplane core `>= v2.5`, runtime `v2.5.1` via `rossigee/crossplane-runtime`
 fork, CLI `v2.5.0`, Go `1.27.1`). Build submodule must be
 `https://github.com/rossigee/build` (`rossigee-lint-fixes`); upstream
 `crossplane/build` lacks targets. Never add a local `.golangci.yml`.
