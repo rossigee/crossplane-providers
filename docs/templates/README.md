@@ -6,7 +6,7 @@ Part of the [standards](../content/standards/_index.md); platform floor (Crosspl
 
 The release-preparation branches use:
 - Go 1.27.2
-- golangci-lint 2.13.2 with .golangci.yml (gofmt + goimports + core linters)
+- golangci-lint 2.14.0 with .golangci.yml (gofmt + goimports + core linters)
 - pre-commit v6.0.0 + hadolint v2.12.0 (excludes `tools/` and `*_test.go` where appropriate)
 - Full security scanning (govulncheck + gosec SARIF upload) in CI + security.yml
 - Consistent rossigee/build makelib for `make lint` etc. (`rossigee-lint-fixes @ e5bf20a`, runtime v2.5.0)
@@ -20,7 +20,7 @@ The release-preparation branches use:
 | Issue | Before | After | Status |
 |-------|--------|-------|--------|
 | **Go Version** | Mixed / outdated | Go 1.27.1 + GO_REQUIRED_VERSION in Makefiles | ✅ **Fixed** (2026-09-08) |
-| **Lint Config** | None or per-repo | Identical .golangci.yml (v2, golangci-lint 2.13.2) in all + templates | ✅ **Fixed** |
+| **Lint Config** | None or per-repo | Identical .golangci.yml (v2, golangci-lint 2.14.0) in all + templates | ✅ **Fixed** |
 | **CI Structure** | Inconsistent (some missing security-scan) | Standardized template + full gosec/govuln/SARIF in ci.yml | ✅ **Fixed** (outliers migrated) |
 | **Actions** | Mixed v4/v5 | checkout@v7 + setup-go@v7 | ✅ **Fixed** |
 | **Templates** | Stale / outdated comments | Updated + .golangci.yml added | ✅ **Fixed** |
@@ -29,7 +29,7 @@ The release-preparation branches use:
 ### Provider Update Status
 
 Release preparation for all 20 providers is aligned as of 2026-09-24:
-- .golangci.yml present and identical in all (golangci-lint 2.13.2)
+- .golangci.yml present and identical in all (golangci-lint 2.14.0)
 - ci.yml follows standardized template (with security-scan job) — `GO_VERSION: '1.27.2'`
 - GO 1.27.2 everywhere in workflows + Makefiles + go.mod (verified via `scripts/audit_standards.sh`)
 - pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes standardized
