@@ -82,3 +82,6 @@
 [submodule "provider-vault"]
 	path = provider-vault
 	url = https://github.com/rossigee/provider-vault
+[submodule "provider-localai"]
+	path = provider-localai
+	url = https://github.com/rossigee/provider-localai.git
