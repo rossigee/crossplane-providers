@@ -10,7 +10,7 @@
 #   - Go version:            1.27.3
 #   - golangci-lint version: 2.14.0
 #   - build submodule:       github.com/rossigee/build @ rossigee-lint-fixes @ e5bf20a
-#   - runtime:               crossplane-runtime/v2 v2.5.0 (rossigee fork)
+#   - runtime:               crossplane-runtime/v2 v2.5.1 (rossigee fork)
 #   - crossplane CLI:        v2.5.0 from cli.crossplane.io
 #   - crossplane core floor: >= v2.5 (see docs/content/standards/platform.md)
 #   - pre-commit:            v6.0.0, hadolint v2.12.0
@@ -30,7 +30,7 @@ STD_GO_VERSION="1.27.3"
 STD_LINT_VERSION="2.14.0"
 STD_BUILD_BRANCH="rossigee-lint-fixes"
 STD_BUILD_URL="https://github.com/rossigee/build"
-STD_RUNTIME_VERSION="v2.5.0"
+STD_RUNTIME_VERSION="v2.5.1"
 STD_RUNTIME_FORK="github.com/rossigee/crossplane-runtime/v2"
 STD_CLI_VERSION="v2.5.0"
 
