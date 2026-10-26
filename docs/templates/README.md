@@ -5,7 +5,7 @@ Part of the [standards](../content/standards/_index.md); platform floor (Crosspl
 `>= v2.5`): [platform.md](../content/standards/platform.md).
 
 The release-preparation branches use:
-- Go 1.27.2
+- Go 1.27.3
 - golangci-lint 2.14.0 with .golangci.yml (gofmt + goimports + core linters)
 - pre-commit v6.0.0 + hadolint v2.12.0 (excludes `tools/` and `*_test.go` where appropriate)
 - Full security scanning (govulncheck + gosec SARIF upload) in CI + security.yml
@@ -30,8 +30,8 @@ The release-preparation branches use:
 
 Release preparation for all 20 providers is aligned as of 2026-09-24:
 - .golangci.yml present and identical in all (golangci-lint 2.14.0)
-- ci.yml follows standardized template (with security-scan job) — `GO_VERSION: '1.27.2'`
-- GO 1.27.2 everywhere in workflows + Makefiles + go.mod (verified via `scripts/audit_standards.sh`)
+- ci.yml follows standardized template (with security-scan job) — `GO_VERSION: '1.27.3'`
+- GO 1.27.3 everywhere in workflows + Makefiles + go.mod (verified via `scripts/audit_standards.sh`)
 - pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes standardized
 - Outliers (hostinger, minio, btcpay) migrated to full template
 
