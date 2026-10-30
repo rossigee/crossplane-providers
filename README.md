@@ -13,7 +13,7 @@ pointing at its own repository (see `.gitmodules`). File issues and PRs
 
 ## Providers
 
-20 providers. See the [Providers page](https://rossigee.github.io/crossplane-providers/) for the full list.
+21 providers. See the [Providers page](https://rossigee.github.io/crossplane-providers/) for the full list.
 
 See [docs](https://rossigee.github.io/crossplane-providers/) for versions and live standardization status.
 
@@ -26,7 +26,7 @@ See [docs](https://rossigee.github.io/crossplane-providers/) for versions and li
 kubectl crossplane install provider ghcr.io/rossigee/provider-minio:v0.21.3
 ```
 
-**v2 APIs:** All 20 providers use Crossplane v2 namespaced APIs (`.m.crossplane.io/v1beta1`).
+**v2 APIs:** All 21 providers use Crossplane v2 namespaced APIs (`.m.crossplane.io/v1beta1`).
 Cluster-scoped v1 APIs are deprecated; v2 provides namespace-scoped resources for better multi-tenancy.
 Per-resource examples live in each provider's `examples/` and `README.md`.
 
@@ -49,7 +49,7 @@ git push origin vX.Y.Z
 
 Shared tooling: [rossigee/build](https://github.com/rossigee/build) submodule
 (`rossigee-lint-fixes` branch). It is a small fork of `crossplane/build`:
-adds `govulncheck` to `reviewable`, bumps `golangci-lint` to `2.13.2` with
+adds `govulncheck` to `reviewable`, bumps `golangci-lint` to `2.14.0` with
 vendor-before-generate, and pins CLI `v2.5.0` from the working
 `cli.crossplane.io` URL. Upstream lacks all three. CI templates live in
 [docs/templates/](./docs/templates/).

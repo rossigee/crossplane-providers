@@ -46,7 +46,7 @@ declare -A TEMPLATE_MAP=(
 
 echo "# Crossplane Providers - Workflow Drift Audit" > "$OUTPUT"
 echo "" >> "$OUTPUT"
-echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$OUTPUT"
+echo "Generated: $(LC_ALL=C date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$OUTPUT"
 echo "Template version reference: 2026-09-08" >> "$OUTPUT"
 echo "" >> "$OUTPUT"
 

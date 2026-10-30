@@ -14,7 +14,7 @@ per-provider repositories (each `provider-*` dir is a git submodule).
 
 1. Native Crossplane implementations only — no `upjet`, `terraform-plugin-sdk` /
    `framework`, `terraform-provider-*` (see `AGENTS.md` mandate).
-2. Platform floor: Crossplane core `>= v2.5`, runtime `v2.5.0` via
+2. Platform floor: Crossplane core `>= v2.5`, runtime `v2.5.1` via
    `rossigee/crossplane-runtime` fork — see `docs/content/standards/platform.md`.
 3. Build: `rossigee/build` submodule (`rossigee-lint-fixes`), no local
    `.golangci.yml`. Verify `make lint reviewable test build`.

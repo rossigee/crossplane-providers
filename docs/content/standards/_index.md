@@ -23,4 +23,4 @@ tables); live status is rendered in `docs/content/_index.md`.
 Naming: standards files are lowercase kebab-case. Scaffolding skeleton for new
 provider READMEs: `template/README.md` (implements `readme-standard.md`).
 
-**2026-09 workflow standardization round complete** (all 20 providers): templates updated to Go 1.27.1, full security scanning, AGPL allowance, xpkg-only publishing overrides + img neutralization on ghcr.io/rossigee. Tracked via `scripts/audit_workflows.sh`. See [maintenance history](../maintenance-history.md) for details.
+**2026-09 workflow standardization round complete** (20 providers at the time; localai was added later): templates updated to Go 1.27.1, full security scanning, AGPL allowance, xpkg-only publishing overrides + img neutralization on ghcr.io/rossigee. Tracked via `scripts/audit_workflows.sh`. See [maintenance history](../maintenance-history.md) for details.

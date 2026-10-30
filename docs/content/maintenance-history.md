@@ -90,6 +90,8 @@ see `docs/content/standards/platform.md`.
 migration or project-wide controller-runtime downgrade. Stale gitignored
 `vendor/` (2026-07-28) also out of sync. Flagged as separate pre-existing bug.
 
+**Resolved (2026-10):** `apis/blockstorage` no longer imports the legacy runtime, and `go.mod` uses `crossplane-runtime/v2 v2.5.1` via the fork. The diagnosis above is historical.
+
 ## Pre-existing lint fixes (2026-08-10)
 
 backblaze `cmd/provider/main.go:52` (unchecked `os.Setenv`), keycloak
