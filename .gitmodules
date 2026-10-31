@@ -52,7 +52,7 @@
 
 [submodule "provider-openstack"]
 	path = provider-openstack
-	url = https://github.com/crossplane-contrib/provider-openstack
+	url = https://github.com/rossigee/provider-openstack
 
 [submodule "provider-plausible"]
 	path = provider-plausible
