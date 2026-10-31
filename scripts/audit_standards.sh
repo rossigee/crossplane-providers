@@ -214,7 +214,7 @@ case "$FORMAT" in
             echo "FAILURES: $FAIL_COUNT"
             exit 1
         fi
-        echo "All 20 providers pass."
+        echo "All ${#ROWS[@]} providers pass."
         exit 0
         ;;
 esac

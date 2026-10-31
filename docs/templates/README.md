@@ -6,7 +6,7 @@ Part of the [standards](../content/standards/_index.md); platform floor (Crosspl
 
 The release-preparation branches use:
 - Go 1.27.3
-- golangci-lint 2.14.0 with .golangci.yml (gofmt + goimports + core linters)
+- golangci-lint 2.14.0 with the build submodule lint config (no local .golangci.yml)
 - pre-commit v6.0.0 + hadolint v2.12.0 (excludes `tools/` and `*_test.go` where appropriate)
 - Full security scanning (govulncheck + gosec SARIF upload) in CI + security.yml
 - Consistent rossigee/build makelib for `make lint` etc. (`rossigee-lint-fixes @ e5bf20a`, runtime v2.5.0)
@@ -20,16 +20,16 @@ The release-preparation branches use:
 | Issue | Before | After | Status |
 |-------|--------|-------|--------|
 | **Go Version** | Mixed / outdated | Go 1.27.1 + GO_REQUIRED_VERSION in Makefiles | ✅ **Fixed** (2026-09-08) |
-| **Lint Config** | None or per-repo | Identical .golangci.yml (v2, golangci-lint 2.14.0) in all + templates | ✅ **Fixed** |
+| **Lint Config** | None or per-repo | Build submodule config only; no local .golangci.yml | ✅ **Fixed** |
 | **CI Structure** | Inconsistent (some missing security-scan) | Standardized template + full gosec/govuln/SARIF in ci.yml | ✅ **Fixed** (outliers migrated) |
 | **Actions** | Mixed v4/v5 | checkout@v7 + setup-go@v7 | ✅ **Fixed** |
-| **Templates** | Stale / outdated comments | Updated + .golangci.yml added | ✅ **Fixed** |
+| **Templates** | Stale / outdated comments | Updated | ✅ **Fixed** |
 | **pre-commit / hadolint** | Mixed / missing excludes | pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes | ✅ **Fixed** (2026-09-08) |
 
 ### Provider Update Status
 
 Release preparation for all 20 providers is aligned as of 2026-09-24:
-- .golangci.yml present and identical in all (golangci-lint 2.14.0)
+- No local .golangci.yml in any provider; lint via build submodule (golangci-lint 2.14.0)
 - ci.yml follows standardized template (with security-scan job) — `GO_VERSION: '1.27.3'`
 - GO 1.27.3 everywhere in workflows + Makefiles + go.mod (verified via `scripts/audit_standards.sh`)
 - pre-commit v6.0.0 + hadolint v2.12.0 with `tools/` and `*_test.go` excludes standardized
@@ -67,7 +67,7 @@ This directory contains standardized CI/CD templates designed to:
 - ⭐ **Zero scheduled emails** (on-demand security scanning only)
 - 🏷️ **Clean registry tags** (CI validates, Release publishes)
 - ⚡ **Modern tooling** (Go 1.27.1, ubuntu-24.04, checkout@v7, setup-go@v7, golangci-lint 2.13.2, pre-commit v6.0.0, hadolint v2.12.0)
-- 📋 **Consistent patterns** across all 20 providers + .golangci.yml lint config
+- 📋 **Consistent patterns** across all 21 providers, linted with the build submodule config
 - 🧹 **Clean excludes** (`tools/` and `*_test.go` excluded from go-fmt/go-imports/go-vet where needed)
 
 ## Template Files

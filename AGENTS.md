@@ -14,7 +14,7 @@ are rejected.
 
 ## Providers
 
-20 providers; see [docs/content/_index.md](./docs/content/_index.md) for versions,
+21 providers; see [docs/content/_index.md](./docs/content/_index.md) for versions,
 origins, API scope, and audit-generated standardization status. Production: cloudflare,
 harbor, mailgun, minio, plausible. Registry: `ghcr.io/rossigee/provider-*:tag`
 (fully qualified).
@@ -54,7 +54,7 @@ git push origin vX.Y.Z
 Prerequisites and version floor:
 [docs/content/standards/platform.md](./docs/content/standards/platform.md)
 (Crossplane core `>= v2.5`, runtime `v2.5.1` via `rossigee/crossplane-runtime`
-fork, CLI `v2.5.0`, Go `1.27.2`). Build submodule must be
+fork, CLI `v2.5.0`, Go `1.27.3`). Build submodule must be
 `https://github.com/rossigee/build` (`rossigee-lint-fixes`); upstream
 `crossplane/build` lacks targets. Never add a local `.golangci.yml`.
 
