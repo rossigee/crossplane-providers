@@ -12,7 +12,7 @@ Minimum supported platform for all providers in this repository.
 | Crossplane core | `>= v2.5` | namespaced (`.m.`) APIs, `DeploymentRuntimeConfig` |
 | crossplane-runtime/v2 | `v2.5.1` via `github.com/rossigee/crossplane-runtime` fork (`replace` directive) | fork carries events fix below; `v2.5.1` adds ExternalLister |
 | crossplane CLI | `v2.5.0` from `cli.crossplane.io` | matches `rossigee/build` `makelib/k8s_tools.mk` |
-| Go | `1.27.3` | `go.mod`, `Makefile GO_REQUIRED_VERSION`, `ci.yml GO_VERSION` |
+| Go | `1.27.4` | `go.mod`, `Makefile GO_REQUIRED_VERSION`, `ci.yml GO_VERSION` |
 | golangci-lint | `2.14.0` | `Makefile GOLANGCILINT_VERSION`; build submodule lint config, no local `.golangci.yml` |
 | Build submodule | `https://github.com/rossigee/build` @ `rossigee-lint-fixes` | audited by `scripts/audit_standards.sh` |
 | pre-commit / hadolint | `v6.0.0` / `v2.12.0` | CI templates |
